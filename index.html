@@ -3,347 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>V.A.L.E.U.R© — Les 7 visages de l'anxiété</title>
-  <meta name="description" content="V.A.L.E.U.R© — Un parcours de transformation pour comprendre vos 7 visages de l'anxiété, retirer les masques de défense et retrouver votre vraie place dans votre vie.">
+  <title>V.A.L.E.U.R©</title>
+  <meta name="description" content="V.A.L.E.U.R© — Le parcours pour comprendre d'où vient votre anxiété — et la transformer.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="design-system.css">
   <style>
-    .landing-wrap { position: relative; z-index: 1; overflow: hidden; }
 
-    /* HERO */
-    .hero-section {
+    /* ── BASE ── */
+    .page { position: relative; z-index: 1; }
+
+    section {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 5vw, 3rem);
+    }
+
+    /* ── HERO ── */
+    .hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: clamp(2rem, 6vw, 4rem);
-      align-items: center;
-      padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
     }
 
-    .hero-left { text-align: left; max-width: 640px; }
-
-    .hero-tagline {
-      font-size: 0.82rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-title {
+    .hero-name {
       font-family: var(--font-display);
-      font-size: clamp(2.8rem, 6vw, 3.8rem);
+      font-size: clamp(5.5rem, 18vw, 10rem);
       font-weight: 300;
-      line-height: 1.2;
-      color: var(--text-primary);
-      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s both;
     }
 
-    .hero-title span {
+    .hero-line {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 5vw, 2.6rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s 0.15s both;
+    }
+
+    .hero-cta-wrap {
+      display: flex;
+      justify-content: center;
+      animation: fadeInUp 1s 0.3s both;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-sub {
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      animation: fadeInUp 1s 0.45s both;
+    }
+
+    .hero-sub a { color: var(--gold); text-decoration: none; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 1px;
+      height: clamp(40px, 8vw, 80px);
+      background: var(--gold-gradient);
+      margin: 0 auto;
+      opacity: 0.4;
+    }
+
+    /* ── SECTION MIROIR ── */
+    .miroir {
+      text-align: center;
+    }
+
+    .miroir-question {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 5vw, 2.8rem);
+      font-weight: 300;
+      color: var(--text-primary);
+      line-height: 1.45;
+      margin-bottom: 1.2rem;
+    }
+
+    .miroir-question em {
+      font-style: italic;
       background: var(--gold-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .hero-problem {
-      font-size: clamp(1.05rem, 3vw, 1.25rem);
+    .miroir-body {
+      font-size: clamp(1rem, 3vw, 1.18rem);
       color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 1.8rem;
-    }
-
-    .hero-benefits {
-      margin-bottom: 2.4rem;
-      list-style: none;
-      padding: 0;
-    }
-
-    .hero-benefits li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      font-size: 0.98rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.6rem;
-    }
-
-    .hero-benefits li::before {
-      content: "•";
-      color: var(--gold);
-      font-size: 1.1rem;
-      line-height: 1.2;
-      margin-top: 0.15rem;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .hero-note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .hero-author {
-      margin-top: 1.8rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .hero-author strong { color: var(--text-primary); }
-    .hero-author a { color: var(--gold); text-decoration: none; }
-
-    /* DROITE : 7 VISAGES */
-    .hero-right {
-      display: flex;
-      justify-content: center;
-    }
-
-    .faces-card {
-      position: relative;
-      width: clamp(280px, 32vw, 360px);
-      padding: clamp(2.2rem, 4vw, 2.6rem);
-      text-align: center;
-    }
-
-    .faces-title {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      color: var(--text-primary);
-    }
-
-    .faces-ring {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1/1;
-      margin: 0 auto 1.5rem auto;
-      border-radius: 50%;
-      border: 1px solid rgba(201,168,76,0.22);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: visible;
-    }
-
-    .faces-core {
-      position: relative;
-      width: 34%;
-      aspect-ratio: 1/1.05;
-      border-radius: 48% 48% 44% 44% / 42% 42% 52% 52%;
-      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), rgba(201,168,76,0.9));
-      box-shadow:
-        0 0 30px rgba(201,168,76,0.6),
-        0 0 80px rgba(201,168,76,0.35),
-        inset 0 0 26px rgba(255,255,255,0.4);
-    }
-
-    .faces-core::after {
-      content: "";
-      position: absolute;
-      inset: 32% 18% 40%;
-      background:
-        radial-gradient(ellipse 26% 46% at 30% 40%, rgba(0,0,0,0.75) 0%, transparent 100%),
-        radial-gradient(ellipse 26% 46% at 70% 40%, rgba(0,0,0,0.75) 0%, transparent 100%);
-      opacity: 0.45;
-    }
-
-    .faces-spark {
-      position: absolute;
-      inset: -30%;
-      background: radial-gradient(circle, rgba(244,244,244,0.28), transparent 70%);
-      filter: blur(10px);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .face-mini {
-      position: absolute;
-      width: 24%;
-      aspect-ratio: 1/1.2;
-      border-radius: 48% 48% 44% 44% / 42% 42% 52% 52%;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.6);
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
-    }
-
-    .face-mini::after {
-      content: "";
-      position: absolute;
-      inset: 32% 18% 40%;
-      background:
-        radial-gradient(ellipse 24% 44% at 30% 42%, rgba(0,0,0,0.8) 0%, transparent 100%),
-        radial-gradient(ellipse 24% 44% at 70% 42%, rgba(0,0,0,0.8) 0%, transparent 100%);
-      mix-blend-mode: multiply;
-      opacity: 0.9;
-    }
-
-    .face-mini:hover {
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 18px 42px rgba(0,0,0,0.75);
-    }
-
-    /* Placement précis des 7 visages autour du centre */
-    .face-red    { top: -6%; left: 50%; transform: translateX(-50%); }
-    .face-orange { top: 16%; right: -6%; }
-    .face-yellow { bottom: 16%; right: -8%; }
-    .face-green  { bottom: -8%; left: 50%; transform: translateX(-50%); }
-    .face-blue   { bottom: 16%; left: -8%; }
-    .face-indigo { top: 16%; left: -6%; }
-    .face-violet { top: 45%; left: -12%; transform: translateY(-50%); }
-
-    .faces-caption {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    .faces-caption strong { color: var(--text-primary); }
-
-    /* SECTION 7 VISAGES (CLARTÉ) */
-    .visages-section {
-      padding: clamp(3.5rem, 7vw, 5rem) clamp(1.5rem, 6vw, 5rem);
-      max-width: 1100px;
+      line-height: 1.9;
+      font-weight: 300;
+      max-width: 600px;
       margin: 0 auto;
     }
 
-    .visages-title {
+    /* ── SECTION RECOGNITION (liste miroir) ── */
+    .recognais {
       text-align: center;
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 300;
+    }
+
+    .recognais-tag {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
       margin-bottom: 2rem;
     }
 
-    .visages-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.3rem;
-    }
-
-    .visage-card {
-      background: rgba(255,255,255,0.02);
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(255,255,255,0.04);
-      padding: 1.2rem 1.3rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.9rem;
-      align-items: center;
-    }
-
-    .visage-dot {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+    .recognais-list {
+      list-style: none;
+      padding: 0;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .visage-text strong {
-      display: block;
-      font-size: 0.95rem;
-      color: var(--text-primary);
-      margin-bottom: 0.2rem;
-    }
-
-    .visage-text span {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    .visage-card:nth-child(1) { border-left: 3px solid var(--rouge); }
-    .visage-card:nth-child(2) { border-left: 3px solid var(--orange); }
-    .visage-card:nth-child(3) { border-left: 3px solid var(--jaune); }
-    .visage-card:nth-child(4) { border-left: 3px solid var(--vert); }
-    .visage-card:nth-child(5) { border-left: 3px solid var(--bleu); }
-    .visage-card:nth-child(6) { border-left: 3px solid var(--indigo); }
-    .visage-card:nth-child(7) { border-left: 3px solid var(--violet); grid-column: 1 / -1; }
-
-    /* SECTION QUESTIONNAIRE */
-    .questionnaire-section {
-      padding: clamp(3.5rem, 7vw, 5rem) clamp(1.5rem, 6vw, 5rem);
-      max-width: 920px;
+      flex-direction: column;
+      gap: 0.9rem;
+      max-width: 620px;
       margin: 0 auto 3rem auto;
-      text-align: center;
     }
 
-    .q-tag {
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-    }
-
-    .q-title {
+    .recognais-list li {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.3rem);
+      font-size: clamp(1.15rem, 3.5vw, 1.6rem);
+      font-style: italic;
       font-weight: 300;
-      margin-bottom: 1.4rem;
-    }
-
-    .q-desc {
-      font-size: clamp(1rem, 3vw, 1.2rem);
       color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 2.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottom: 0.9rem;
+      transition: color 0.3s;
     }
 
-    .q-note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .recognais-list li:last-child { border-bottom: none; }
+    .recognais-list li:hover { color: var(--text-primary); }
 
-    .landing-footer {
+    /* ── SECTION REPONSE ── */
+    .reponse {
       text-align: center;
-      padding: 1.8rem 1rem 2.2rem;
-      font-size: 0.72rem;
+    }
+
+    .reponse-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      font-weight: 300;
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+    }
+
+    .reponse-title span {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .reponse-body {
+      font-size: clamp(1rem, 3vw, 1.15rem);
+      color: var(--text-secondary);
+      line-height: 1.9;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto 2.5rem auto;
+    }
+
+    /* ── SECTION CTA FINAL ── */
+    .cta-section {
+      text-align: center;
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 300;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .cta-note {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--text-muted);
+      margin-top: 1.2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.72rem;
       letter-spacing: 0.08em;
+      color: var(--text-muted);
       border-top: 1px solid rgba(255,255,255,0.04);
       line-height: 1.8;
     }
 
-    .landing-footer a { color: var(--gold); text-decoration: none; }
+    footer a { color: var(--gold); text-decoration: none; }
 
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
-      .hero-section {
-        grid-template-columns: minmax(0, 1fr);
-        text-align: center;
-      }
-      .hero-left { text-align: center; margin: 0 auto; }
-      .hero-ctas { justify-content: center; }
-      .hero-author { text-align: center; }
-    }
-
-    @media (max-width: 720px) {
-      .visages-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .visage-card { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 520px) {
-      .visages-grid { grid-template-columns: 1fr; }
-      .hero-ctas { flex-direction: column; }
+    @media (max-width: 480px) {
       .btn-hero { width: 100%; max-width: 320px; }
     }
   </style>
@@ -354,146 +223,95 @@
 <div class="orbe orbe-2"></div>
 <div id="progress-bar" class="progress-bar" style="transform:scaleX(0)"></div>
 
-<div class="landing-wrap">
+<div class="page">
 
-  <!-- HERO : PROMESSE CLAIRE -->
-  <section class="hero-section">
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-name">V.A.L.E.U.R©</div>
 
-    <div class="hero-left">
-      <p class="hero-tagline">Les 7 visages de l'anxiété</p>
-      <h1 class="hero-title">
-        Vous ne manquez pas de volonté.<br>
-        <span>Vous êtes coincé derrière des masques.</span>
-      </h1>
-
-      <p class="hero-problem">
-        Vous savez analyser, comprendre, raisonner.
-        Pourtant les mêmes peurs reviennent : peur de décevoir, de perdre le contrôle,
-        d'être rejeté, de ne jamais être « assez ».
-      </p>
-
-      <ul class="hero-benefits">
-        <li>Mettre des mots précis sur vos 7 visages de l'anxiété.</li>
-        <li>Voir noir sur blanc comment vous vous sur-adaptez, contrôlez ou fuyez.</li>
-        <li>Commencer à retirer, un par un, les masques qui vous épuisent.</li>
-      </ul>
-
-      <div class="hero-ctas">
-        <a href="questionnaire.html" class="btn-primary btn-hero">Cartographier mes visages</a>
-        <a href="module-0.html" class="btn-secondary btn-hero">Comprendre le parcours V.A.L.E.U.R©</a>
-      </div>
-
-      <p class="hero-note">Parcours introspectif · Sans compte · Vos données restent sur votre appareil</p>
-
-      <p class="hero-author">
-        Par <strong>Céline Bourbon</strong>, psychologue ·
-        auteure de <em>« De la peur à la joie d'être soi »</em>,
-        publié aux <a href="https://www.editions-harmattan.fr" target="_blank" rel="noopener">Éditions L'Harmattan</a>.
-      </p>
-    </div>
-
-    <!-- Droite : image dynamique avec les 7 masques -->
-    <div class="hero-right">
-      <div class="faces-card glass-card">
-        <div class="faces-title">Vos masques aujourd'hui</div>
-        <div class="faces-ring">
-          <div class="faces-spark"></div>
-          <div class="faces-core"></div>
-
-          <!-- 7 visages (masques validés, fonds transparents) -->
-          <div class="face-mini face-red" style="background-image:url('https://user-gen-media-assets.s3.amazonaws.com/seedream_images/5b43e4db-bc7b-424d-bf90-8f01dfa38d01.png');"></div>
-          <div class="face-mini face-orange" style="background-image:url('https://user-gen-media-assets.s3.amazonaws.com/gemini_images/25e4e663-d2b3-410c-b434-b7d502ec972f.png');"></div>
-          <div class="face-mini face-yellow" style="background-image:url('https://user-gen-media-assets.s3.amazonaws.com/gemini_images/e5f32971-1d8c-4428-93a4-0f7c0d694eec.png');"></div>
-          <div class="face-mini face-green" style="background-image:url('https://user-gen-media-assets.s3.amazonaws.com/gemini_images/e7ddac58-8dc6-4c3d-8cdf-fb1cde14efaa.png');"></div>
-          <div class="face-mini face-blue" style="background-image:url('https://user-gen-media-assets.s3.amazonaws.com/gemini_images/35d43f50-1170-46f8-b90e-038324b9890c.png');"></div>
-          <div class="face-mini face-indigo" style="background-image:url('https://user-gen-media-assets.s3.amazonaws.com/gemini_images/8a69d2b7-266b-4ec0-a50d-c8827193b5e7.png');"></div>
-          <div class="face-mini face-violet" style="background-image:url('https://user-gen-media-assets.s3.amazonaws.com/gemini_images/4c267229-b77f-463b-a974-bcaf5d929918.png');"></div>
-        </div>
-        <p class="faces-caption">
-          <strong>V.A.L.E.U.R©</strong> est un parcours pour identifier ces visages,
-          comprendre ce qu'ils protègent et laisser enfin respirer ce qui est vrai en vous.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION : LES 7 VISAGES EXPLIQUÉS -->
-  <section class="visages-section">
-    <h2 class="visages-title">Les 7 visages de l'anxiété</h2>
-    <div class="visages-grid">
-      <div class="visage-card">
-        <div class="visage-dot">🔴</div>
-        <div class="visage-text">
-          <strong>Rouge — Peur de la mort</strong>
-          <span>Hypervigilance corporelle, scénarios catastrophes silencieux, angoisse diffuse autour de la santé.</span>
-        </div>
-      </div>
-      <div class="visage-card">
-        <div class="visage-dot">🟠</div>
-        <div class="visage-text">
-          <strong>Orange — Peur de souffrir psychiquement</strong>
-          <span>Tout contrôler mentalement pour ne rien ressentir, fuir les émotions trop fortes.</span>
-        </div>
-      </div>
-      <div class="visage-card">
-        <div class="visage-dot">🟡</div>
-        <div class="visage-text">
-          <strong>Jaune — Peur de l'inconnu</strong>
-          <span>Besoin de prévoir, d'anticiper, d'avoir une réponse à tout avant d'oser bouger.</span>
-        </div>
-      </div>
-      <div class="visage-card">
-        <div class="visage-dot">🟢</div>
-        <div class="visage-text">
-          <strong>Vert — Peur du rejet</strong>
-          <span>Sur-adaptation, difficulté à dire non, s'oublier pour ne pas perdre l'autre.</span>
-        </div>
-      </div>
-      <div class="visage-card">
-        <div class="visage-dot">🔵</div>
-        <div class="visage-text">
-          <strong>Bleu — Besoin de contrôle</strong>
-          <span>Porter tout, ne jamais déléguer, ne pas montrer de faiblesse jusqu'à l'épuisement.</span>
-        </div>
-      </div>
-      <div class="visage-card">
-        <div class="visage-dot">🟣</div>
-        <div class="visage-text">
-          <strong>Indigo — Peur de l'échec</strong>
-          <span>Syndrome de l'imposteur, perfectionnisme, ne pas se lancer tant que ce n'est pas « parfait ».</span>
-        </div>
-      </div>
-      <div class="visage-card">
-        <div class="visage-dot">💜</div>
-        <div class="visage-text">
-          <strong>Violet — Peur de perdre son identité</strong>
-          <span>Résister au changement, rester dans des rôles qui ne vous correspondent plus par loyauté ou habitude.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION : LE QUESTIONNAIRE / PARCOURS -->
-  <section class="questionnaire-section glass-card" style="border-radius:var(--radius-xl);">
-    <p class="q-tag">Le cœur du parcours V.A.L.E.U.R©</p>
-    <h2 class="q-title">Une cartographie complète de vos masques</h2>
-    <p class="q-desc">
-      Un questionnaire profond, structuré en 7 dimensions, qui met en lumière vos stratégies de défense,
-      leurs points forts, leurs excès et la place qu'elles prennent dans votre vie.
-      Ce n'est pas un test rapide : c'est la base de votre transformation.
+    <p class="hero-line">
+      Et si votre anxiété<br>
+      n’était pas un problème —<br>
+      mais un message ?
     </p>
-    <div class="hero-ctas" style="justify-content:center;">
-      <a href="questionnaire.html" class="btn-primary btn-hero">Commencer ma cartographie</a>
-      <a href="module-0.html" class="btn-secondary btn-hero">Voir comment se déroule le parcours</a>
+
+    <div class="hero-cta-wrap">
+      <a href="questionnaire.html" class="btn-primary btn-hero">Découvrir ce qu’elle dit de moi</a>
     </div>
-    <p class="q-note">Confidentiel · Aucun compte à créer · Vous avancez à votre rythme</p>
+
+    <p class="hero-sub">
+      Céline Bourbon, psychologue
+      &nbsp;·&nbsp;
+      <a href="https://www.editions-harmattan.fr" target="_blank" rel="noopener">Éd. L’Harmattan</a>
+    </p>
   </section>
 
-  <footer class="landing-footer">
-    © Céline Bourbon — Méthode V.A.L.E.U.R© — Tous droits réservés<br>
-    Basée sur l'ouvrage <em>« De la peur à la joie d'être soi »</em> —
-    <a href="https://www.editions-harmattan.fr" target="_blank" rel="noopener">Éditions L'Harmattan</a>
+  <div class="divider"></div>
+
+  <!-- ═══ MIROIR ═══ -->
+  <section class="miroir">
+    <p class="miroir-question">
+      Vous avez tout essayé.
+      <br>
+      <em>L’anxiété est encore là.</em>
+    </p>
+    <p class="miroir-body">
+      Pas parce que vous n’êtes pas assez courageux.
+      Pas parce que vous ne vous y prenez pas bien.
+      Mais parce que personne ne vous a encore montré d’où elle vient.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ RECONNAISSANCE ═══ -->
+  <section class="recognais">
+    <p class="recognais-tag">Vous vous reconnaissez ?</p>
+    <ul class="recognais-list">
+      <li>« Je contrôle tout — et je m’épuise. »</li>
+      <li>« J’anticipe le pire en permanence. »</li>
+      <li>« Je fais tout pour ne pas décevoir. »</li>
+      <li>« Je ne sais plus qui je suis vraiment. »</li>
+      <li>« J’analyse, je comprends — mais rien ne change. »</li>
+    </ul>
+    <p style="font-size:clamp(1rem,3vw,1.15rem);color:var(--text-secondary);line-height:1.8;font-weight:300;">
+      Ce ne sont pas des caractères. Ce sont des réponses.
+      Des stratégies que vous avez construites,
+      un jour, pour vous protéger d’une peur très précise.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ LA RÉPONSE ═══ -->
+  <section class="reponse">
+    <h2 class="reponse-title">
+      V.A.L.E.U.R© est le premier parcours<br>
+      qui cible <span>toutes</span> les formes de l’anxiété.
+    </h2>
+    <p class="reponse-body">
+      Pas un programme générique. Pas une liste de techniques.
+      Une cartographie personnelle : votre forme d’anxiété,
+      ses racines, ses masques — et le chemin pour revenir à vous.
+    </p>
+    <a href="module-0.html" class="btn-secondary">Comment fonctionne le parcours ?</a>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="cta-section">
+    <h2 class="cta-title">Quelle est votre forme d’anxiété ?</h2>
+    <a href="questionnaire.html" class="btn-primary btn-hero">Commencer ma cartographie</a>
+    <p class="cta-note">Confidentiel &nbsp;·&nbsp; Sans compte &nbsp;·&nbsp; À votre rythme</p>
+  </section>
+
+  <footer>
+    © Céline Bourbon &nbsp;·&nbsp; Méthode V.A.L.E.U.R© &nbsp;·&nbsp; Tous droits réservés<br>
+    <em>« De la peur à la joie d’être soi »</em> &nbsp;·&nbsp;
+    <a href="https://www.editions-harmattan.fr" target="_blank" rel="noopener">Éditions L’Harmattan</a>
   </footer>
+
 </div>
 
 <script src="valeur-core.js"></script>
