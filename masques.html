@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Les 7 masques — Méthode V.A.L.E.U.R©</title>
+  <meta name="description" content="Découvrez les 7 masques de la méthode V.A.L.E.U.R© — les 7 peurs qui empêchent d'être soi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:#080c14;color:#fff;font-family:'Jost',sans-serif;overflow-x:hidden; }
+
+    :root {
+      --gold:#C9A84C;--gold-light:#e2c97e;
+      --gold-gradient:linear-gradient(135deg,#C9A84C 0%,#e2c97e 50%,#C9A84C 100%);
+      --text-primary:rgba(255,255,255,0.95);
+      --text-secondary:rgba(255,255,255,0.65);
+      --text-muted:rgba(255,255,255,0.35);
+    }
+
+    #progress-bar { position:fixed;top:0;left:0;height:2px;background:var(--gold-gradient);transform-origin:left;transform:scaleX(0);z-index:1000;transition:transform 0.1s; }
+
+    /* nav retour */
+    .nav-back {
+      position:fixed;top:0;left:0;right:0;z-index:900;
+      padding:1.2rem clamp(1.5rem,4vw,3rem);
+      display:flex;align-items:center;justify-content:space-between;
+      background:linear-gradient(to bottom,rgba(8,12,20,0.95) 0%,transparent 100%);
+      backdrop-filter:blur(8px);
+    }
+    .nav-back a { font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:0.5rem;transition:opacity 0.3s; }
+    .nav-back a:hover { opacity:0.7; }
+    .nav-title { font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;letter-spacing:0.2em;background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+
+    .orbe { position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px);opacity:0.1; }
+    .orbe-1 { width:700px;height:700px;background:radial-gradient(circle,#6c3483,transparent);top:-200px;right:-200px; }
+    .orbe-2 { width:600px;height:600px;background:radial-gradient(circle,#1b3a6b,transparent);bottom:10%;left:-150px; }
+
+    .particle { position:fixed;border-radius:50%;background:var(--gold);pointer-events:none;z-index:0;animation:floatUp linear infinite; }
+    @keyframes floatUp { 0%{transform:translateY(100vh);opacity:0}10%{opacity:0.25}90%{opacity:0.08}100%{transform:translateY(-60px);opacity:0} }
+
+    .page { position:relative;z-index:1; }
+
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn   { from{opacity:0}to{opacity:1} }
+    @keyframes scaleIn  { from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)} }
+
+    .reveal { opacity:0;transform:translateY(40px);transition:opacity 0.9s ease,transform 0.9s ease; }
+    .reveal.visible { opacity:1;transform:translateY(0); }
+
+    .divider { width:1px;height:clamp(50px,10vw,100px);background:var(--gold-gradient);margin:0 auto;opacity:0.3; }
+    .divider-h { width:60px;height:1px;background:var(--gold-gradient);margin:2rem auto;opacity:0.5; }
+
+    section { max-width:900px;margin:0 auto;padding:clamp(4rem,10vw,7rem) clamp(1.5rem,5vw,3.5rem); }
+    .section-tag { font-size:0.72rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem; }
+
+    /* ─── HERO MASQUES ─── */
+    .hero-masques {
+      min-height:80vh;display:flex;flex-direction:column;
+      justify-content:center;align-items:center;
+      text-align:center;padding:6rem clamp(1.5rem,5vw,3.5rem) 3rem;
+    }
+    .hero-masques-eyebrow { font-size:0.72rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;animation:fadeIn 1s both; }
+    .hero-masques-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2.8rem,8vw,6rem);
+      font-weight:300;line-height:1.05;margin-bottom:2rem;
+      background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:scaleIn 1.2s cubic-bezier(.22,1,.36,1) 0.1s both;
+    }
+    .hero-masques-sub {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1.2rem,3.5vw,2rem);
+      font-weight:300;font-style:italic;
+      color:var(--text-secondary);line-height:1.6;max-width:600px;
+      animation:fadeInUp 1s 0.3s both;
+    }
+
+    /* ─── INTRO ─── */
+    .intro-section { text-align:center; }
+    .intro-title { font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:300;color:var(--text-primary);line-height:1.4;margin-bottom:1.5rem; }
+    .intro-title em { font-style:italic;background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .intro-body { font-size:clamp(1rem,2.8vw,1.2rem);color:var(--text-secondary);line-height:1.95;font-weight:300;max-width:640px;margin:0 auto; }
+
+    /* ─── GRILLE 7 MASQUES ─── */
+    .masks-overview { text-align:center; }
+    .masks-grid {
+      display:grid;grid-template-columns:repeat(7,1fr);
+      gap:clamp(8px,1.5vw,14px);width:100%;margin-bottom:4rem;
+    }
+    @media(max-width:680px) { .masks-grid{grid-template-columns:repeat(4,1fr);} }
+    @media(max-width:380px) { .masks-grid{grid-template-columns:repeat(3,1fr);} }
+    .mask-card {
+      padding:clamp(12px,2vw,18px) clamp(6px,1.2vw,10px);
+      border-radius:10px;background:rgba(255,255,255,0.03);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,0.06);
+      display:flex;flex-direction:column;align-items:center;gap:8px;
+      transition:all 0.4s;cursor:default;
+    }
+    .mask-card:hover { background:rgba(255,255,255,0.07);transform:translateY(-4px); }
+    .mask-icon { width:clamp(28px,4vw,42px);height:clamp(34px,5vw,52px); }
+    .mask-icon svg { width:100%;height:100%; }
+    .mask-name { font-family:'Cormorant Garamond',serif;font-size:clamp(0.75rem,1.6vw,1rem);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-align:center; }
+    .mask-fear { font-family:'Jost',sans-serif;font-size:clamp(0.52rem,1vw,0.65rem);font-weight:300;color:rgba(255,255,255,0.38);text-align:center;line-height:1.4; }
+
+    /* ─── DÉTAILS MASQUES ─── */
+    .masks-details-section { }
+    .mask-detail {
+      background:rgba(255,255,255,0.025);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border-radius:12px;border:1px solid rgba(255,255,255,0.06);
+      padding:clamp(1.5rem,3.5vw,2.5rem);text-align:left;
+      transition:all 0.4s;margin-bottom:1.5rem;
+    }
+    .mask-detail:hover { background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1); }
+    .mask-detail-header { display:flex;align-items:center;gap:1rem;margin-bottom:1rem; }
+    .mask-detail-icon { width:40px;height:50px;flex-shrink:0; }
+    .mask-detail-icon svg { width:100%;height:100%; }
+    .mask-detail-title { font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3.5vw,2rem);font-weight:700;line-height:1; }
+    .mask-detail-fear { font-family:'Jost',sans-serif;font-size:0.7rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;opacity:0.55;margin-top:4px; }
+    .mask-detail-phrase { font-family:'Cormorant Garamond',serif;font-size:clamp(1.05rem,2.8vw,1.4rem);font-style:italic;font-weight:300;line-height:1.6;margin-bottom:1rem;color:rgba(255,255,255,0.8);border-left:2px solid rgba(255,255,255,0.1);padding-left:1rem; }
+    .mask-detail-tags { display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0.8rem; }
+    .tag { font-family:'Jost',sans-serif;font-size:clamp(0.58rem,1.2vw,0.7rem);font-weight:300;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.65); }
+    .mask-detail-bride { font-family:'Jost',sans-serif;font-size:0.75rem;font-weight:300;font-style:italic;line-height:1.6;color:rgba(255,255,255,0.38);margin-top:0.6rem; }
+    .mask-detail-antidote { font-family:'Cormorant Garamond',serif;font-size:clamp(0.95rem,2.2vw,1.15rem);font-weight:300;line-height:1.7;color:rgba(255,255,255,0.6);margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.04); }
+    .mask-detail-antidote strong { color:rgba(255,255,255,0.8);font-weight:400; }
+
+    /* ─── MÉTHODE VALEUR ─── */
+    .methode-section { text-align:center; }
+    .methode-title { font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:300;color:var(--text-primary);line-height:1.35;margin-bottom:0.8rem; }
+    .methode-title span { background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .methode-sub { font-size:clamp(0.95rem,2.5vw,1.1rem);color:var(--text-secondary);font-weight:300;max-width:580px;margin:0 auto 3.5rem;line-height:1.9; }
+    .steps-list { display:flex;flex-direction:column;gap:0;max-width:680px;margin:0 auto 3rem; }
+    .step-item { display:flex;align-items:center;gap:clamp(16px,3vw,28px);padding:clamp(1rem,2.5vh,1.5rem) clamp(1rem,2.5vw,1.8rem);border-left:2px solid currentColor;background:rgba(255,255,255,0.02);margin-bottom:2px;text-align:left;transition:background 0.3s; }
+    .step-item:hover { background:rgba(255,255,255,0.04); }
+    .step-letter { font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1;min-width:clamp(28px,4vw,45px); }
+    .step-title { font-family:'Jost',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:4px; }
+    .step-desc { font-family:'Jost',sans-serif;font-size:clamp(0.8rem,1.8vw,0.9rem);font-weight:300;color:var(--text-muted);line-height:1.6; }
+
+    /* ─── AVANT / APRÈS ─── */
+    .transformation-section { text-align:center; }
+    .split-grid { display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2.5vw,28px);max-width:820px;margin:0 auto; }
+    @media(max-width:520px) { .split-grid{grid-template-columns:1fr;} }
+    .split-card { padding:clamp(1.5rem,3.5vw,2.5rem);border-radius:12px;text-align:left;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px); }
+    .split-card.cold { background:rgba(27,79,114,0.08);border:1px solid rgba(27,79,114,0.25); }
+    .split-card.warm { background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.25); }
+    .card-label { font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:1.2rem;opacity:0.6; }
+    .card-title { font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:600;margin-bottom:1.2rem; }
+    .card-item { font-size:clamp(0.78rem,1.8vw,0.9rem);font-weight:300;color:var(--text-secondary);padding:0.5rem 0 0.5rem 1rem;border-left:1px solid rgba(255,255,255,0.08);margin-bottom:0.4rem;line-height:1.6; }
+    .card-quote { font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-style:italic;margin-top:1rem; }
+
+    /* ─── CTA FINAL ─── */
+    .cta-final { text-align:center; }
+    .cta-title { font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:300;line-height:1.3;color:var(--text-primary);margin-bottom:1rem; }
+    .cta-title span { background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .cta-note { font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-top:1.5rem; }
+
+    .btn-primary { display:inline-block;background:var(--gold-gradient);color:#0d1117;font-family:'Jost',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;padding:1.1rem 2.8rem;border-radius:2px;transition:transform 0.3s,box-shadow 0.3s;box-shadow:0 4px 30px rgba(201,168,76,0.25); }
+    .btn-primary:hover { transform:translateY(-2px);box-shadow:0 8px 40px rgba(201,168,76,0.4); }
+    .btn-ghost { display:inline-block;border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;padding:0.85rem 2.2rem;border-radius:2px;transition:all 0.3s; }
+    .btn-ghost:hover { background:rgba(201,168,76,0.08);border-color:var(--gold); }
+
+    footer { text-align:center;padding:2.5rem 1rem;font-size:0.7rem;letter-spacing:0.1em;color:var(--text-muted);border-top:1px solid rgba(255,255,255,0.04);line-height:2; }
+    footer a { color:var(--gold);text-decoration:none; }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<nav class="nav-back">
+  <a href="index.html">← Retour</a>
+  <span class="nav-title">V.A.L.E.U.R©</span>
+  <a href="questionnaire.html">Commencer →</a>
+</nav>
+<div class="orbe orbe-1"></div>
+<div class="orbe orbe-2"></div>
+<div id="particles"></div>
+
+<div class="page">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero-masques">
+    <p class="hero-masques-eyebrow">Méthode V.A.L.E.U.R© · Céline Bourbon · Psychologue</p>
+    <h1 class="hero-masques-title">Les 7 masques</h1>
+    <p class="hero-masques-sub">
+      Les 7 peurs fondamentales qui empêchent d'être soi —<br>
+      et les stratégies de survie qui vous épuisent en silence.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ INTRO ═══ -->
+  <section class="intro-section reveal">
+    <p class="section-tag">Ce que personne ne vous a dit</p>
+    <h2 class="intro-title">
+      Votre anxiété n'est pas un trouble.<br>
+      C'est un <em>système de protection</em>.
+    </h2>
+    <div class="divider-h"></div>
+    <p class="intro-body">
+      Un jour, enfant ou adulte, vous avez rencontré une peur si intense
+      que votre psyché a inventé un masque pour s'en protéger.
+      Ce masque vous a sauvé. Aujourd'hui, il est devenu votre prison.
+      La méthode V.A.L.E.U.R© cartographie ces 7 masques avec précision
+      — pour que vous puissiez enfin les traverser plutôt que les subir.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ VUE D'ENSEMBLE ═══ -->
+  <section class="masks-overview reveal">
+    <p class="section-tag">Vue d'ensemble</p>
+    <div class="masks-grid">
+      <div class="mask-card" style="border-color:rgba(192,57,43,0.3)">
+        <div class="mask-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(192,57,43,0.2)" stroke="#c0392b" stroke-width="1.5"/><ellipse cx="18" cy="26" rx="5" ry="3" fill="rgba(192,57,43,0.5)"/><ellipse cx="34" cy="26" rx="5" ry="3" fill="rgba(192,57,43,0.5)"/><path d="M18 38Q26 34 34 38" stroke="#c0392b" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="mask-name" style="color:#e05a4e">Rouge</div>
+        <div class="mask-fear">Mort · Maladie</div>
+      </div>
+      <div class="mask-card" style="border-color:rgba(196,98,45,0.3)">
+        <div class="mask-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(196,98,45,0.2)" stroke="#c4622d" stroke-width="1.5"/><ellipse cx="18" cy="26" rx="5" ry="3" fill="rgba(196,98,45,0.5)"/><ellipse cx="34" cy="26" rx="5" ry="3" fill="rgba(196,98,45,0.5)"/><path d="M18 40Q26 44 34 40" stroke="#c4622d" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="mask-name" style="color:#e07840">Orange</div>
+        <div class="mask-fear">Souffrance</div>
+      </div>
+      <div class="mask-card" style="border-color:rgba(201,168,76,0.3)">
+        <div class="mask-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(201,168,76,0.2)" stroke="#c9a84c" stroke-width="1.5"/><path d="M14 24Q18 20 22 24" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/><path d="M30 24Q34 20 38 24" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/><path d="M18 38Q26 36 34 38" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="mask-name" style="color:#d4b85a">Jaune</div>
+        <div class="mask-fear">Inconnu · Contrôle</div>
+      </div>
+      <div class="mask-card" style="border-color:rgba(45,106,79,0.3)">
+        <div class="mask-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(45,106,79,0.2)" stroke="#2d6a4f" stroke-width="1.5"/><path d="M14 26Q18 30 22 26" stroke="#2d6a4f" stroke-width="1.5" stroke-linecap="round"/><path d="M30 26Q34 30 38 26" stroke="#2d6a4f" stroke-width="1.5" stroke-linecap="round"/><path d="M16 38Q26 42 36 38" stroke="#2d6a4f" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="mask-name" style="color:#3d8a64">Vert</div>
+        <div class="mask-fear">Rejet · Abandon</div>
+      </div>
+      <div class="mask-card" style="border-color:rgba(27,111,162,0.3)">
+        <div class="mask-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(27,111,162,0.2)" stroke="#1b6fa2" stroke-width="1.5"/><rect x="14" y="23" width="10" height="6" rx="3" fill="rgba(27,111,162,0.5)" stroke="#1b6fa2" stroke-width="1"/><rect x="28" y="23" width="10" height="6" rx="3" fill="rgba(27,111,162,0.5)" stroke="#1b6fa2" stroke-width="1"/><path d="M18 39L26 36L34 39" stroke="#1b6fa2" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="mask-name" style="color:#2980b9">Bleu</div>
+        <div class="mask-fear">Impuissance</div>
+      </div>
+      <div class="mask-card" style="border-color:rgba(108,52,131,0.3)">
+        <div class="mask-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(108,52,131,0.2)" stroke="#6c3483" stroke-width="1.5"/><path d="M14 22Q18 26 22 22" stroke="#6c3483" stroke-width="1.5" stroke-linecap="round"/><path d="M30 22Q34 26 38 22" stroke="#6c3483" stroke-width="1.5" stroke-linecap="round"/><path d="M20 39Q26 35 32 39" stroke="#6c3483" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="mask-name" style="color:#8e44ad">Indigo</div>
+        <div class="mask-fear">Échec · Jugement</div>
+      </div>
+      <div class="mask-card" style="border-color:rgba(125,60,152,0.3)">
+        <div class="mask-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(125,60,152,0.2)" stroke="#7d3c98" stroke-width="1.5"/><ellipse cx="18" cy="26" rx="5" ry="4" fill="rgba(125,60,152,0.35)" stroke="#7d3c98" stroke-width="1"/><ellipse cx="34" cy="26" rx="5" ry="4" fill="rgba(125,60,152,0.35)" stroke="#7d3c98" stroke-width="1"/><path d="M20 39Q26 43 32 39" stroke="#7d3c98" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="mask-name" style="color:#9b59b6">Violet</div>
+        <div class="mask-fear">Faux self · Vide</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ DÉTAILS 7 MASQUES ═══ -->
+  <section class="masks-details-section reveal">
+    <p class="section-tag">Les 7 masques en détail</p>
+
+    <div class="mask-detail reveal" style="border-left:3px solid #c0392b">
+      <div class="mask-detail-header">
+        <div class="mask-detail-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(192,57,43,0.2)" stroke="#c0392b" stroke-width="2"/><ellipse cx="18" cy="26" rx="6" ry="4" fill="rgba(192,57,43,0.6)"/><ellipse cx="34" cy="26" rx="6" ry="4" fill="rgba(192,57,43,0.6)"/><path d="M18 38Q26 34 34 38" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><div class="mask-detail-title" style="color:#e05a4e">Masque Rouge</div><div class="mask-detail-fear" style="color:#e05a4e">Peur de la mort · de la maladie · du corps</div></div>
+      </div>
+      <div class="mask-detail-phrase">« Et si ce symptôme était grave ? Et si mon corps était en train de me lâcher ? »</div>
+      <div class="mask-detail-tags"><span class="tag">Hypervigilance corporelle</span><span class="tag">Consultations répétées</span><span class="tag">Anxiété de santé chronique</span><span class="tag">Intolérance aux sensations</span></div>
+      <div class="mask-detail-bride">Bride la sécurité intérieure et la confiance dans le corps</div>
+      <div class="mask-detail-antidote">La voie vers soi : <strong>apprendre à habiter son corps avec douceur</strong>, reconnaître le langage somatique des émotions comme un signal — non comme une menace.</div>
+    </div>
+
+    <div class="mask-detail reveal" style="border-left:3px solid #c4622d">
+      <div class="mask-detail-header">
+        <div class="mask-detail-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(196,98,45,0.2)" stroke="#c4622d" stroke-width="2"/><ellipse cx="18" cy="26" rx="6" ry="4" fill="rgba(196,98,45,0.6)"/><ellipse cx="34" cy="26" rx="6" ry="4" fill="rgba(196,98,45,0.6)"/><path d="M18 40Q26 44 34 40" stroke="#c4622d" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><div class="mask-detail-title" style="color:#e07840">Masque Orange</div><div class="mask-detail-fear" style="color:#e07840">Peur de la souffrance émotionnelle</div></div>
+      </div>
+      <div class="mask-detail-phrase">« Je préfère ne rien ressentir plutôt que de risquer d'avoir mal. »</div>
+      <div class="mask-detail-tags"><span class="tag">Évitement émotionnel</span><span class="tag">Anesthésie des émotions</span><span class="tag">Suractivité permanente</span><span class="tag">Relations en surface</span></div>
+      <div class="mask-detail-bride">Bride l'ouverture émotionnelle et la capacité d'aimer pleinement</div>
+      <div class="mask-detail-antidote">La voie vers soi : <strong>traverser l'émotion plutôt que la fuir</strong> — découvrir que la douleur ressentie dure bien moins longtemps que la douleur évitée.</div>
+    </div>
+
+    <div class="mask-detail reveal" style="border-left:3px solid #c9a84c">
+      <div class="mask-detail-header">
+        <div class="mask-detail-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(201,168,76,0.2)" stroke="#c9a84c" stroke-width="2"/><path d="M14 24Q18 20 22 24" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/><path d="M30 24Q34 20 38 24" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/><path d="M18 38Q26 36 34 38" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><div class="mask-detail-title" style="color:#d4b85a">Masque Jaune</div><div class="mask-detail-fear" style="color:#d4b85a">Peur de l'inconnu · de l'incertitude</div></div>
+      </div>
+      <div class="mask-detail-phrase">« Je dois tout prévoir, tout contrôler. L'incertitude m'est insupportable. »</div>
+      <div class="mask-detail-tags"><span class="tag">Obsession du contrôle</span><span class="tag">Ruminations</span><span class="tag">Rigidité</span><span class="tag">Panique face aux imprévus</span></div>
+      <div class="mask-detail-bride">Bride la confiance en la vie et la capacité de lâcher-prise</div>
+      <div class="mask-detail-antidote">La voie vers soi : <strong>développer la tolérance à l'incertitude</strong> — apprendre que la vie ne se maîtrise pas, elle se vit.</div>
+    </div>
+
+    <div class="mask-detail reveal" style="border-left:3px solid #2d6a4f">
+      <div class="mask-detail-header">
+        <div class="mask-detail-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(45,106,79,0.2)" stroke="#2d6a4f" stroke-width="2"/><path d="M14 26Q18 30 22 26" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/><path d="M30 26Q34 30 38 26" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/><path d="M16 38Q26 42 36 38" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><div class="mask-detail-title" style="color:#3d8a64">Masque Vert</div><div class="mask-detail-fear" style="color:#3d8a64">Peur du rejet · de l'abandon</div></div>
+      </div>
+      <div class="mask-detail-phrase">« Je fais tout pour que les autres m'aiment. Je n'ose pas dire non — et je m'oublie. »</div>
+      <div class="mask-detail-tags"><span class="tag">Hyperadaptation</span><span class="tag">Difficulté à dire non</span><span class="tag">Dépendance affective</span><span class="tag">Peur de décevoir</span></div>
+      <div class="mask-detail-bride">Bride l'authenticité et la capacité à exister pour soi</div>
+      <div class="mask-detail-antidote">La voie vers soi : <strong>oser décevoir pour se retrouver</strong> — comprendre que les bonnes relations survivent au non.</div>
+    </div>
+
+    <div class="mask-detail reveal" style="border-left:3px solid #1b6fa2">
+      <div class="mask-detail-header">
+        <div class="mask-detail-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(27,111,162,0.2)" stroke="#1b6fa2" stroke-width="2"/><rect x="14" y="22" width="10" height="7" rx="3.5" fill="rgba(27,111,162,0.55)" stroke="#1b6fa2" stroke-width="1.5"/><rect x="28" y="22" width="10" height="7" rx="3.5" fill="rgba(27,111,162,0.55)" stroke="#1b6fa2" stroke-width="1.5"/><path d="M18 39L26 36L34 39" stroke="#1b6fa2" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><div class="mask-detail-title" style="color:#2980b9">Masque Bleu</div><div class="mask-detail-fear" style="color:#2980b9">Peur de l'impuissance · de perdre le contrôle</div></div>
+      </div>
+      <div class="mask-detail-phrase">« Je dois toujours avoir la situation en main. Demander de l'aide, c'est une faiblesse. »</div>
+      <div class="mask-detail-tags"><span class="tag">Hypercontrôle</span><span class="tag">Impossibilité à recevoir</span><span class="tag">Épuisement du "faire seul"</span><span class="tag">Toute-puissance défensive</span></div>
+      <div class="mask-detail-bride">Bride l'affirmation authentique de soi et la capacité à recevoir</div>
+      <div class="mask-detail-antidote">La voie vers soi : <strong>découvrir la force dans la vulnérabilité</strong> — que recevoir de l'aide est un acte de puissance, non de faiblesse.</div>
+    </div>
+
+    <div class="mask-detail reveal" style="border-left:3px solid #6c3483">
+      <div class="mask-detail-header">
+        <div class="mask-detail-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(108,52,131,0.2)" stroke="#6c3483" stroke-width="2"/><path d="M14 22Q18 26 22 22" stroke="#6c3483" stroke-width="2" stroke-linecap="round"/><path d="M30 22Q34 26 38 22" stroke="#6c3483" stroke-width="2" stroke-linecap="round"/><path d="M20 39Q26 35 32 39" stroke="#6c3483" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><div class="mask-detail-title" style="color:#8e44ad">Masque Indigo</div><div class="mask-detail-fear" style="color:#8e44ad">Peur de l'échec · de l'inadéquation · du jugement</div></div>
+      </div>
+      <div class="mask-detail-phrase">« Je dois être parfait(e) pour avoir le droit d'exister. Si j'échoue, je ne vaux rien. »</div>
+      <div class="mask-detail-tags"><span class="tag">Perfectionnisme paralysant</span><span class="tag">Syndrome de l'imposteur</span><span class="tag">Procrastination</span><span class="tag">Autocritique sévère</span></div>
+      <div class="mask-detail-bride">Bride la créativité, l'audace et le droit à l'imperfection</div>
+      <div class="mask-detail-antidote">La voie vers soi : <strong>accueillir l'imperfection comme preuve d'existence réelle</strong> — l'imposteur se tait quand on cesse de lui demander la permission d'être.</div>
+    </div>
+
+    <div class="mask-detail reveal" style="border-left:3px solid #7d3c98">
+      <div class="mask-detail-header">
+        <div class="mask-detail-icon"><svg viewBox="0 0 52 64" fill="none"><path d="M26 2C10 2 4 14 4 28C4 46 14 58 26 62C38 58 48 46 48 28C48 14 42 2 26 2Z" fill="rgba(125,60,152,0.2)" stroke="#7d3c98" stroke-width="2"/><ellipse cx="18" cy="26" rx="6" ry="4" fill="rgba(125,60,152,0.4)" stroke="#7d3c98" stroke-width="1.5"/><ellipse cx="34" cy="26" rx="6" ry="4" fill="rgba(125,60,152,0.4)" stroke="#7d3c98" stroke-width="1.5"/><path d="M20 39Q26 43 32 39" stroke="#7d3c98" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><div class="mask-detail-title" style="color:#9b59b6">Masque Violet</div><div class="mask-detail-fear" style="color:#9b59b6">Peur de perdre son identité · Faux self</div></div>
+      </div>
+      <div class="mask-detail-phrase">« Je ne sais plus qui je suis vraiment. Je joue un rôle depuis si longtemps que j'ai perdu le fil. »</div>
+      <div class="mask-detail-tags"><span class="tag">Sentiment de vide</span><span class="tag">Perte de sens</span><span class="tag">Quête identitaire</span><span class="tag">Angoisse existentielle</span></div>
+      <div class="mask-detail-bride">Bride la capacité à évoluer et à habiter pleinement sa propre vie</div>
+      <div class="mask-detail-antidote">La voie vers soi : <strong>retrouver le fil de ses désirs vrais</strong> — comprendre que l'identité n'est pas un état fixe, mais un mouvement vers soi.</div>
+    </div>
+
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ MÉTHODE VALEUR ═══ -->
+  <section class="methode-section reveal">
+    <p class="section-tag">La solution</p>
+    <h2 class="methode-title">V.A.L.E.U.R© — <span>6 étapes</span> vers la liberté</h2>
+    <p class="methode-sub">Une traversée précise, étape par étape, de la peur à la joie d'être soi.</p>
+    <div class="steps-list">
+      <div class="step-item" style="color:#c0392b;border-color:#c0392b"><div class="step-letter" style="color:#c0392b">V</div><div><div class="step-title" style="color:#c0392b">Voir</div><div class="step-desc">Je vois le masque qui s'active et la peur qui le nourrit.</div></div></div>
+      <div class="step-item" style="color:#c4622d;border-color:#c4622d"><div class="step-letter" style="color:#c4622d">A</div><div><div class="step-title" style="color:#c4622d">Accueillir</div><div class="step-desc">J'accueille l'émotion sous le masque, sans la fuir.</div></div></div>
+      <div class="step-item" style="color:#c9a84c;border-color:#c9a84c"><div class="step-letter" style="color:#c9a84c">L</div><div><div class="step-title" style="color:#c9a84c">Localiser</div><div class="step-desc">Je localise dans mon corps où le masque se manifeste.</div></div></div>
+      <div class="step-item" style="color:#2d6a4f;border-color:#2d6a4f"><div class="step-letter" style="color:#2d6a4f">E</div><div><div class="step-title" style="color:#2d6a4f">Explorer</div><div class="step-desc">J'explore le conflit entre mon masque et ma valeur authentique.</div></div></div>
+      <div class="step-item" style="color:#1b6fa2;border-color:#1b6fa2"><div class="step-letter" style="color:#1b6fa2">U</div><div><div class="step-title" style="color:#1b6fa2">Unifier</div><div class="step-desc">J'intègre la part blessée et je choisis ma valeur.</div></div></div>
+      <div class="step-item" style="color:#7d3c98;border-color:#7d3c98"><div class="step-letter" style="color:#7d3c98">R</div><div><div class="step-title" style="color:#7d3c98">Renforcer</div><div class="step-desc">J'ancre le nouveau choix pour qu'il devienne ma nouvelle voie.</div></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ AVANT / APRÈS ═══ -->
+  <section class="transformation-section reveal">
+    <p class="section-tag">La transformation</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);font-weight:300;color:var(--text-primary);line-height:1.4;margin-bottom:3rem;">
+      Votre nature authentique est intacte.<br>
+      <em style="font-style:italic;color:rgba(255,255,255,0.45)">Les masques la recouvrent — mais ne l'ont jamais détruite.</em>
+    </h2>
+    <div class="split-grid">
+      <div class="split-card cold">
+        <div class="card-label" style="color:#8bb4d4">Votre Personnage</div>
+        <div class="card-title" style="color:#8bb4d4">Masqué</div>
+        <div class="card-item">Peurs figées, contrôle, rigidité</div>
+        <div class="card-item">Schémas répétitifs automatiques</div>
+        <div class="card-item">Tension permanente, épuisement</div>
+        <div class="card-item">Coupé(e) de vos émotions vraies</div>
+        <div class="card-quote" style="color:#8bb4d4">« Je subis »</div>
+      </div>
+      <div class="split-card warm">
+        <div class="card-label" style="color:var(--gold)">Votre Nature Authentique</div>
+        <div class="card-title" style="color:var(--gold)">Libéré(e)</div>
+        <div class="card-item">Vérité intérieure, valeurs profondes</div>
+        <div class="card-item">Élan vital, liberté, fluidité</div>
+        <div class="card-item">Choix conscient, spontanéité</div>
+        <div class="card-item">Joie d'être soi, pleinement vivant(e)</div>
+        <div class="card-quote" style="color:var(--gold)">« Je choisis »</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="cta-final reveal">
+    <h2 class="cta-title">
+      Maintenant, cartographiez<br>
+      <span>vos masques personnels</span>
+    </h2>
+    <p style="font-size:clamp(1rem,2.8vw,1.2rem);color:var(--text-secondary);line-height:1.85;font-weight:300;max-width:520px;margin:0 auto 2.5rem;">Le questionnaire V.A.L.E.U.R© identifie précisément lesquels vous portez — et lesquels vous épuisent le plus.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="questionnaire.html" class="btn-primary">Commencer ma cartographie</a>
+      <a href="index.html" class="btn-ghost">← Retour à l'accueil</a>
+    </div>
+    <p class="cta-note">Confidentiel &nbsp;·&nbsp; Sans compte &nbsp;·&nbsp; Résultat immédiat</p>
+  </section>
+
+  <footer>
+    © Céline Bourbon &nbsp;·&nbsp; Méthode V.A.L.E.U.R© &nbsp;·&nbsp; Tous droits réservés<br>
+    <em>« De la peur à la joie d'être soi »</em> &nbsp;·&nbsp;
+    <a href="https://www.editions-harmattan.fr" target="_blank" rel="noopener">Éditions L'Harmattan</a>
+  </footer>
+
+</div>
+
+<script>
+  const pc=document.getElementById('particles');
+  for(let i=0;i<15;i++){const p=document.createElement('div');p.className='particle';p.style.cssText=`left:${Math.random()*100}%;width:${Math.random()*2+1}px;height:${Math.random()*2+1}px;animation-duration:${Math.random()*20+15}s;animation-delay:${Math.random()*18}s;`;pc.appendChild(p);}
+  window.addEventListener('scroll',()=>{const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);document.getElementById('progress-bar').style.transform=`scaleX(${pct})`;});
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});},{threshold:0.1});
+  reveals.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
