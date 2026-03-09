@@ -3,136 +3,235 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>V.A.L.E.U.R© — Les 7 peurs qui empêchent d'être soi</title>
-  <meta name="description" content="Méthode V.A.L.E.U.R© par Céline Bourbon — Psychologue. Cartographiez vos défenses, traversez vos masques, révélez votre nature authentique.">
+  <title>V.A.L.E.U.R© — Comprendre les 7 peurs qui maintiennent l'anxiété</title>
+  <meta name="description" content="Méthode psychoéducative V.A.L.E.U.R© — Identifiez vos masques de défense, traversez vos peurs fondamentales, retrouvez votre nature authentique.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="design-system.css">
   <style>
-    .hero-container { position: relative; z-index: 1; }
-
-    .hero-card { padding: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 5vw, 4rem); }
-
+    /* Landing page premium styles */
+    .hero-container { max-width: 1400px; margin: 0 auto; padding: clamp(2rem,5vw,4rem); }
+    .hero-card { padding: clamp(3rem,8vw,6rem) clamp(2rem,5vw,4rem); }
+    
     .credentials {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
-      margin: 2.5rem 0;
+      margin: 2rem 0;
       flex-wrap: wrap;
     }
-
+    
     .credential-badge {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.55rem 1.2rem;
+      padding: 0.6rem 1.3rem;
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 20px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-    }
-
-    .credential-badge span { color: var(--gold); font-weight: 600; }
-
-    .seven-peurs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(clamp(130px, 20vw, 180px), 1fr));
-      gap: 0.8rem;
-      margin: 2.5rem auto;
-      max-width: 900px;
-    }
-
-    .peur-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 1rem 0.8rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: var(--radius-md);
-      text-align: center;
-      transition: var(--transition);
-      cursor: default;
-    }
-
-    .peur-card:hover {
-      background: rgba(255,255,255,0.06);
-      transform: translateY(-4px);
-    }
-
-    .peur-emoji { font-size: clamp(1.6rem, 4vw, 2rem); }
-
-    .peur-name {
-      font-family: var(--font-body);
-      font-size: clamp(0.7rem, 1.8vw, 0.82rem);
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      color: var(--text-secondary);
-      line-height: 1.3;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      animation: fadeInUp 1s 1.5s both;
-    }
-
-    .scroll-arrow {
-      width: 1px;
-      height: 36px;
-      background: linear-gradient(180deg, var(--gold), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.1); }
-    }
-
-    .book-ref {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-top: 1.5rem;
-      padding: 0.7rem 1.5rem;
-      background: rgba(201,168,76,0.05);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 12px;
       font-size: 0.8rem;
-      color: var(--gold);
-      text-decoration: none;
-      transition: var(--transition-fast);
-    }
-
-    .book-ref:hover {
-      background: rgba(201,168,76,0.1);
-      border-color: rgba(201,168,76,0.3);
-    }
-
-    .copyright-landing {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.7rem;
       color: var(--text-muted);
-      letter-spacing: 0.08em;
-      position: relative;
-      z-index: 1;
+      letter-spacing: 0.05em;
     }
+    
+    .credential-badge span { color: var(--gold); font-weight: 600; }
+    
+    /* Section problématique */
+    .problem-section {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: clamp(2rem,5vw,3rem);
+    }
+    
+    .problem-section h2 {
+      font-size: clamp(2rem,6vw,3.5rem);
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+    }
+    
+    .problem-section p {
+      font-size: clamp(1.1rem,3.5vw,1.35rem);
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Section masques avec images */
+    .masques-section {
+      padding: clamp(4rem,10vw,8rem) clamp(1rem,5vw,3rem);
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    
+    .section-intro {
+      text-align: center;
+      font-size: clamp(1.1rem,3.5vw,1.4rem);
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 2rem auto 4rem auto;
+      color: var(--text-secondary);
+    }
+    
+    .masques-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(2rem,5vw,3rem);
+      margin: 4rem 0;
+    }
+    
+    .mask-card {
+      text-align: center;
+      padding: clamp(2rem,4vw,3rem);
+      transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .mask-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .mask-card .badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--gold-gradient);
+      color: #0a0f1a;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      z-index: 10;
+    }
+    
+    .mask-card.featured {
+      border-color: var(--gold) !important;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 40px rgba(201,168,76,0.3) !important;
+    }
+    
+    .mask-image {
+      width: clamp(200px,50vw,300px);
+      height: auto;
+      margin: 0 auto 1.5rem auto;
+      display: block;
+      filter: drop-shadow(0 15px 40px currentColor);
+      transition: all 0.6s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    
+    .mask-card:hover .mask-image {
+      transform: scale(1.15) translateY(-10px);
+      filter: drop-shadow(0 30px 60px currentColor) brightness(1.2);
+    }
+    
+    .mask-card[data-masque="rouge"] .mask-image { color: #ef4444; }
+    .mask-card[data-masque="orange"] .mask-image { color: #f97316; }
+    .mask-card[data-masque="jaune"] .mask-image { color: #eab308; }
+    .mask-card[data-masque="vert"] .mask-image { color: #22c55e; }
+    .mask-card[data-masque="bleu"] .mask-image { color: #3b82f6; }
+    .mask-card[data-masque="indigo"] .mask-image { color: #8b5cf6; }
+    .mask-card[data-masque="violet"] .mask-image { color: #d946ef; }
+    
+    .mask-card h3 {
+      font-size: clamp(1.5rem,4vw,2rem);
+      margin: 1rem 0 0.5rem 0;
+      color: var(--text-primary);
+    }
+    
+    .mask-card p {
+      font-size: clamp(1rem,3vw,1.15rem);
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+    
+    .validation-section {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: clamp(2rem,5vw,3rem);
+    }
+    
+    .validation-section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .validation-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .validation-section li {
+      font-size: clamp(1rem,3vw,1.2rem);
+      padding: 0.8rem 0;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .validation-section li::before {
+      content: "✓";
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    
+    .cta-center {
+      text-align: center;
+      margin: 5rem 0 2rem 0;
+    }
+    
+    .testimonial {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: clamp(2rem,5vw,3rem);
+      background: rgba(255,255,255,0.03);
+      border-left: 4px solid var(--gold);
+      font-style: italic;
+    }
+    
+    .testimonial p {
+      font-size: clamp(1.1rem,3.5vw,1.3rem);
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial cite {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: normal;
+    }
+    
+    @media (max-width: 768px) {
+      .masques-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .mask-image {
+        width: clamp(150px,40vw,200px);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .masques-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .mask-card {
+      animation: fadeInUp 0.8s ease-out backwards;
+    }
+    
+    .mask-card:nth-child(1) { animation-delay: 0.1s; }
+    .mask-card:nth-child(2) { animation-delay: 0.2s; }
+    .mask-card:nth-child(3) { animation-delay: 0.3s; }
+    .mask-card:nth-child(4) { animation-delay: 0.4s; }
+    .mask-card:nth-child(5) { animation-delay: 0.5s; }
+    .mask-card:nth-child(6) { animation-delay: 0.6s; }
+    .mask-card:nth-child(7) { animation-delay: 0.7s; }
   </style>
 </head>
 <body>
@@ -143,105 +242,178 @@
 
 <div id="progress-bar" class="progress-bar" style="transform:scaleX(0)"></div>
 
+<!-- Hero Section -->
 <div class="hero-container">
   <div class="hero-card glass-card animate-up">
-
-    <!-- Tag -->
     <div class="hero-tag animate-up delay-1">
-      ✦ Méthode psychologique premium · Céline Bourbon
+      ✦ Méthode psychoéducative · Céline Bourbon
     </div>
 
-    <!-- Titre -->
     <h1 class="hero-title animate-up delay-2">V.A.L.E.U.R©</h1>
 
-    <!-- Tagline -->
     <p class="hero-tagline animate-up delay-2">
-      Les 7 peurs qui empêchent d'être soi
+      Comprendre les 7 peurs qui maintiennent l'anxiété
     </p>
 
-    <!-- Sous-titre -->
     <p class="hero-subtitle animate-up delay-3">
-      Un programme de psychoéducation premium pour cartographier vos défenses,<br>
-      traverser vos masques et révéler votre nature authentique.
+      Une approche psychoéducative pour reconnaître vos masques de défense<br>
+      et retrouver votre nature authentique.
     </p>
 
-    <!-- Credentials -->
     <div class="credentials animate-up delay-3">
+      <div class="credential-badge">🧠 <span>Fondements scientifiques</span></div>
       <div class="credential-badge">📖 <span>Livre L'Harmattan</span></div>
-      <div class="credential-badge">🧠 <span>Fondements scientifiques validés</span></div>
       <div class="credential-badge">🔒 <span>Méthode propriétaire</span></div>
     </div>
 
-    <!-- CTA -->
     <div class="hero-cta animate-up delay-4">
-      <a href="dashboard.html" class="btn-primary btn-hero">
-        🚀 Commencer mon parcours
+      <a href="questionnaire.html" class="btn-primary btn-hero">
+        Faire le questionnaire (7 min)
       </a>
       <a href="module-0.html" class="btn-secondary btn-hero">
-        📖 Comprendre la méthode
+        📖 Lire la méthode complète
       </a>
     </div>
-
-    <!-- 7 peurs -->
-    <div class="seven-peurs animate-up delay-5">
-      <div class="peur-card" style="border-color:rgba(239,68,68,0.2)">
-        <span class="peur-emoji">🔴</span>
-        <span class="peur-name">Mort &amp; Maladie</span>
-      </div>
-      <div class="peur-card" style="border-color:rgba(249,115,22,0.2)">
-        <span class="peur-emoji">🟠</span>
-        <span class="peur-name">Souffrance psychique</span>
-      </div>
-      <div class="peur-card" style="border-color:rgba(234,179,8,0.2)">
-        <span class="peur-emoji">🟡</span>
-        <span class="peur-name">Inconnu &amp; Incertitude</span>
-      </div>
-      <div class="peur-card" style="border-color:rgba(34,197,94,0.2)">
-        <span class="peur-emoji">🟢</span>
-        <span class="peur-name">Rejet &amp; Abandon</span>
-      </div>
-      <div class="peur-card" style="border-color:rgba(59,130,246,0.2)">
-        <span class="peur-emoji">🔵</span>
-        <span class="peur-name">Impuissance</span>
-      </div>
-      <div class="peur-card" style="border-color:rgba(139,92,246,0.2)">
-        <span class="peur-emoji">🟣</span>
-        <span class="peur-name">Échec &amp; Inadéquation</span>
-      </div>
-      <div class="peur-card" style="border-color:rgba(217,70,239,0.2)">
-        <span class="peur-emoji">💜</span>
-        <span class="peur-name">Perte d'identité</span>
-      </div>
-    </div>
-
-    <!-- Référence livre -->
-    <div style="text-align:center;" class="animate-up delay-5">
-      <span class="book-ref">
-        📚 Basé sur le livre <em>"De la peur à la joie d'être soi"</em> — Éd. L'Harmattan
-      </span>
-    </div>
-
-  </div>
-
-  <div class="scroll-indicator">
-    <span>Explorer</span>
-    <div class="scroll-arrow"></div>
   </div>
 </div>
 
-<div class="copyright-landing">
-  © Céline Bourbon — Méthode V.A.L.E.U.R© — Tous droits réservés — Reproduction interdite<br>
-  Fondée sur : SHAI · TAS-20 · IUS-12 · ECR-R · LOC+NPI · FMPS · MSI
+<!-- Section Problématique -->
+<section class="problem-section glass-card animate-up delay-5">
+  <h2>Pourquoi l'anxiété persiste malgré vos efforts ?</h2>
+  
+  <p>
+    L'anxiété n'est pas un trouble à combattre, mais un signal.
+    Elle provient de 7 peurs fondamentales, présentes chez chacun·e,
+    qui activent des masques de défense automatiques.
+  </p>
+  
+  <p>
+    Ces masques, formés dès l'enfance (théorie de l'attachement),
+    vous protègent... mais vous emprisonnent aussi.
+  </p>
+  
+  <p>
+    <strong>Résultat :</strong> syndrome de l'imposteur, peur du rejet, évitement,
+    perfectionnisme paralysant, anxiété sociale persistante.
+  </p>
+</section>
+
+<!-- Section 7 Masques avec Images -->
+<section class="masques-section">
+  <h2 style="text-align:center;font-size:clamp(2.5rem,8vw,4.5rem);margin-bottom:1rem;">Les 7 masques universels</h2>
+  <p class="section-intro">
+    Chaque peur active un masque de défense automatique. 
+    Identifiez les vôtres pour mieux les traverser.
+  </p>
+  
+  <div class="masques-grid">
+    <!-- Masque 1 : ROUGE -->
+    <div class="mask-card glass-card" data-masque="rouge">
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/5b43e4db-bc7b-424d-bf90-8f01dfa38d01.png" alt="Masque Rouge" class="mask-image">
+      <h3>🔴 Peur de la Mort</h3>
+      <p>Hypervigilance santé, anxiété somatique persistante</p>
+    </div>
+    
+    <!-- Masque 2 : ORANGE -->
+    <div class="mask-card glass-card" data-masque="orange">
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/25e4e663-d2b3-410c-b434-b7d502ec972f.png" alt="Masque Orange" class="mask-image">
+      <h3>🟠 Peur de la Douleur</h3>
+      <p>Évitement émotionnel, intellectualisation excessive</p>
+    </div>
+    
+    <!-- Masque 3 : JAUNE -->
+    <div class="mask-card glass-card" data-masque="jaune">
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/e5f32971-1d8c-4428-93a4-0f7c0d694eec.png" alt="Masque Jaune" class="mask-image">
+      <h3>🟡 Peur de l'Incertitude</h3>
+      <p>Besoin de contrôle, anxiété anticipatoire chronique</p>
+    </div>
+    
+    <!-- Masque 4 : VERT (⭐ Plus fréquent) -->
+    <div class="mask-card glass-card featured" data-masque="vert">
+      <span class="badge">Le plus fréquent</span>
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/e7ddac58-8dc6-4c3d-8cdf-fb1cde14efaa.png" alt="Masque Vert" class="mask-image">
+      <h3>🟢 Peur du Rejet</h3>
+      <p>Sur-adaptation, effacement de soi, anxiété sociale</p>
+    </div>
+    
+    <!-- Masque 5 : BLEU -->
+    <div class="mask-card glass-card" data-masque="bleu">
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/35d43f50-1170-46f8-b90e-038324b9890c.png" alt="Masque Bleu" class="mask-image">
+      <h3>🔵 Peur de l'Impuissance</h3>
+      <p>Passivité subie, difficulté à s'affirmer, résignation</p>
+    </div>
+    
+    <!-- Masque 6 : INDIGO (⭐ Syndrome imposteur) -->
+    <div class="mask-card glass-card featured" data-masque="indigo">
+      <span class="badge">Syndrome de l'imposteur</span>
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/8a69d2b7-266b-4ec0-a50d-c8827193b5e7.png" alt="Masque Indigo" class="mask-image">
+      <h3>🟣 Peur de l'Échec</h3>
+      <p>Perfectionnisme paralysant, auto-sabotage professionnel</p>
+    </div>
+    
+    <!-- Masque 7 : VIOLET -->
+    <div class="mask-card glass-card" data-masque="violet">
+      <img src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/4c267229-b77f-463b-a974-bcaf5d929918.png" alt="Masque Violet" class="mask-image">
+      <h3>💜 Peur de Perdre son Identité</h3>
+      <p>Rigidité défensive, refus du changement, fixation identitaire</p>
+    </div>
+  </div>
+  
+  <div class="cta-center">
+    <a href="questionnaire.html" class="btn-primary btn-large">
+      Identifier mes masques (7 min)
+    </a>
+  </div>
+</section>
+
+<!-- Section Validation Scientifique -->
+<section class="validation-section glass-card">
+  <h2>Fondements scientifiques</h2>
+  <ul>
+    <li>Théorie de l'attachement (Bowlby, Ainsworth)</li>
+    <li>Théorie polyvagale (Stephen Porges)</li>
+    <li>ACT — Thérapie d'acceptation et d'engagement</li>
+    <li>Pleine conscience appliquée</li>
+  </ul>
+  <p style="text-align:center;margin-top:2rem;font-size:0.95rem;opacity:0.8;">
+    Méthode développée par Céline Bourbon, praticienne en psychothérapie intégrative.
+  </p>
+</section>
+
+<!-- Témoignage sobre -->
+<blockquote class="testimonial glass-card">
+  <p>
+    "J'ai enfin compris pourquoi je me sabotais professionnellement.
+    Le masque Indigo (peur de l'échec) pilotait mes décisions.
+    6 semaines avec V.A.L.E.U.R, j'ai osé postuler... et obtenu le poste."
+  </p>
+  <cite>— Claire, 34 ans, syndrome de l'imposteur</cite>
+</blockquote>
+
+<!-- CTA Final -->
+<section class="problem-section glass-card">
+  <h2 style="text-align:center;">Commencez par identifier vos masques</h2>
+  <div class="cta-center">
+    <a href="questionnaire.html" class="btn-primary btn-large">
+      Faire le questionnaire (7 min)
+    </a>
+    <a href="module-0.html" class="btn-secondary" style="margin-left:1rem;">
+      Lire la méthode complète
+    </a>
+  </div>
+  <p style="text-align:center;margin-top:2rem;font-size:0.9rem;opacity:0.7;">
+    Gratuit · Confidentiel · Sans engagement<br>
+    Vos données restent privées (localStorage)
+  </p>
+</section>
+
+<div class="copyright-landing" style="text-align:center;padding:2rem 1rem;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.08em;">
+  © Céline Bourbon — Méthode V.A.L.E.U.R© — Tous droits réservés<br>
+  Basé sur "De la peur à la joie d'être soi" — Éd. L'Harmattan
 </div>
 
 <script src="valeur-core.js"></script>
 <script>
-  // Si déjà utilisateur avec données, rediriger vers dashboard
-  const hasData = localStorage.getItem('valeur-journal');
-  if (hasData && JSON.parse(hasData)?.length > 0) {
-    // On reste sur la landing - l'utilisateur peut choisir
-  }
-  // Scroll progress
   window.addEventListener('scroll', () => {
     const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
     ValeurCore.updateProgressBar(pct);
