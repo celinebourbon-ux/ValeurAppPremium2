@@ -7,18 +7,25 @@
   <meta name="description" content="V.A.L.E.U.R© — Le premier parcours qui cartographie vos 7 peurs et vous libère de vos masques.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { background:#080c14; color:#fff; font-family:'Jost',sans-serif; overflow-x:hidden; }
+    body { background:#080c14; color:#fff; font-family:'Cormorant Garamond',serif; overflow-x:hidden; }
 
     :root {
       --gold:#C9A84C; --gold-light:#e2c97e;
       --gold-gradient:linear-gradient(135deg,#C9A84C 0%,#e2c97e 50%,#C9A84C 100%);
       --text-primary:rgba(255,255,255,0.95);
-      --text-secondary:rgba(255,255,255,0.65);
-      --text-muted:rgba(255,255,255,0.35);
+      --text-secondary:rgba(255,255,255,0.75);
+      --text-muted:rgba(255,255,255,0.45);
+
+      /* Échelle typographique unique */
+      --fs-hero-logo: clamp(3rem, 9vw, 4.2rem);      /* V.A.L.E.U.R© */
+      --fs-heading:   clamp(1.5rem, 3.2vw, 2.1rem);  /* Titres + phrases émotionnelles */
+      --fs-body:      clamp(1rem, 1.4vw, 1.15rem);   /* Corps de texte, listes, citations */
+      --fs-label:     0.75rem;                       /* Tags, micro-mentions */
+      --fs-cta:       1.05rem;                       /* Boutons */
     }
 
     #progress-bar { position:fixed;top:0;left:0;height:2px;background:var(--gold-gradient);transform-origin:left;transform:scaleX(0);z-index:1000;transition:transform 0.1s; }
@@ -39,110 +46,178 @@
     .reveal { opacity:0;transform:translateY(40px);transition:opacity 0.9s ease,transform 0.9s ease; }
     .reveal.visible { opacity:1;transform:translateY(0); }
 
-    .divider { width:1px;height:clamp(50px,10vw,100px);background:var(--gold-gradient);margin:0 auto;opacity:0.3; }
-    .divider-h { width:60px;height:1px;background:var(--gold-gradient);margin:2rem auto;opacity:0.5; }
+    .divider { width:1px;height:clamp(50px,10vw,90px);background:var(--gold-gradient);margin:0 auto;opacity:0.18; }
 
-    section { max-width:900px;margin:0 auto;padding:clamp(4.5rem,10vw,8rem) clamp(1.5rem,5vw,3.5rem); }
-    .section-tag { font-size:0.72rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem; }
+    section { max-width:900px;margin:0 auto;padding:clamp(4rem,9vw,6.5rem) clamp(1.5rem,5vw,3.5rem); }
+    .section-tag { font-size:var(--fs-label);letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem; }
 
     /* ─── HERO ─── */
     .hero {
       min-height:100vh;display:flex;flex-direction:column;
-      justify-content:center;align-items:center;
-      text-align:center;padding:3rem clamp(1.5rem,5vw,3.5rem);
+      justify-content:center;align-items:center;text-align:center;
+      padding:3rem clamp(1.5rem,5vw,3.5rem);
     }
     .hero-name {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(4.5rem,14vw,11rem);
-      font-weight:300;letter-spacing:0.15em;
+      font-size:var(--fs-hero-logo);
+      font-weight:300;letter-spacing:0.35em;
       background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-      line-height:0.95;margin-bottom:2.5rem;
+      line-height:0.95;margin-bottom:2.2rem;
       animation:scaleIn 1.2s cubic-bezier(.22,1,.36,1) 0.1s both;
-      white-space:nowrap;
+      text-transform:uppercase;
     }
     .hero-line {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(1.4rem,4.5vw,2.8rem);
+      font-size:var(--fs-heading);
       font-weight:300;font-style:italic;
       color:var(--text-primary);line-height:1.5;
-      margin-bottom:3.5rem;
+      margin-bottom:3rem;
       animation:fadeInUp 1s 0.3s both;
     }
-    .hero-line em { font-style:normal;color:var(--gold); }
+    .hero-line em { font-style:italic;color:var(--gold); }
     .hero-cta-wrap { display:flex;flex-direction:column;align-items:center;gap:0.8rem;animation:fadeInUp 1s 0.5s both; }
-    .hero-sub { font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted);margin-top:0.5rem;animation:fadeIn 1.2s 0.9s both; }
-    .hero-sub a { color:rgba(201,168,76,0.55);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.18);padding-bottom:1px;transition:color 0.3s; }
-    .hero-sub a:hover { color:var(--gold); }
+    .hero-sub { font-size:var(--fs-label);letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted);margin-top:0.7rem; }
+    .hero-sub a { color:rgba(201,168,76,0.7);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.25);padding-bottom:2px;transition:color 0.3s,border-color 0.3s; }
+    .hero-sub a:hover { color:var(--gold-light);border-color:var(--gold-light); }
 
     /* ─── BOUTONS ─── */
-    .btn-primary { display:inline-block;background:var(--gold-gradient);color:#0d1117;font-family:'Jost',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;padding:1.1rem 2.8rem;border-radius:2px;transition:transform 0.3s,box-shadow 0.3s;box-shadow:0 4px 30px rgba(201,168,76,0.25); }
-    .btn-primary:hover { transform:translateY(-2px);box-shadow:0 8px 40px rgba(201,168,76,0.4); }
+    .btn-primary {
+      display:inline-block;background:var(--gold-gradient);color:#0d1117;
+      font-size:var(--fs-cta);font-weight:500;letter-spacing:0.25em;
+      text-transform:uppercase;text-decoration:none;
+      padding:1.05rem 2.7rem;border-radius:2px;
+      transition:transform 0.25s,box-shadow 0.25s;
+      box-shadow:0 4px 26px rgba(201,168,76,0.28);
+    }
+    .btn-primary:hover { transform:translateY(-2px);box-shadow:0 10px 45px rgba(201,168,76,0.45); }
 
     /* ─── MIROIR ─── */
     .miroir { text-align:center; }
-    .miroir-question { font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5.5vw,3.2rem);font-weight:300;color:var(--text-primary);line-height:1.4;margin-bottom:1.5rem; }
-    .miroir-question em { font-style:italic;background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-    .miroir-link { display:inline-block;margin-top:2rem;font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.8vw,1.3rem);font-style:italic;color:var(--text-secondary);line-height:1.7; }
-    .miroir-link a { color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;transition:color 0.3s,border-color 0.3s; }
-    .miroir-link a:hover { color:var(--gold-light);border-color:var(--gold); }
-    .miroir-tagline { font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-top:2.5rem; }
+    .miroir-question {
+      font-size:var(--fs-heading);
+      font-weight:300;color:var(--text-primary);
+      line-height:1.5;margin-bottom:1.4rem;
+    }
+    .miroir-question em { font-style:italic;color:var(--gold); }
+    .miroir-link { font-size:var(--fs-body);color:var(--text-secondary);margin-top:1.8rem; }
+    .miroir-link a { color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:2px; }
+    .miroir-link a:hover { color:var(--gold-light);border-color:var(--gold-light); }
+    .miroir-tagline { font-size:var(--fs-label);letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-top:2.2rem; }
 
     /* ─── QUESTIONNAIRE ─── */
     .questionnaire-section { text-align:center; }
     .questionnaire-glass {
       background:rgba(201,168,76,0.04);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
-      border:1px solid rgba(201,168,76,0.2);border-radius:16px;
-      padding:clamp(2.5rem,6vw,4.5rem);max-width:720px;margin:0 auto;
+      border:1px solid rgba(201,168,76,0.15);border-radius:16px;
+      padding:clamp(2.6rem,6vw,4.2rem);max-width:720px;margin:0 auto;
       position:relative;overflow:hidden;
     }
-    .questionnaire-glass::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none; }
-    .q-eyebrow { font-size:0.65rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem; }
-    .q-supertag { font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.8rem; }
-    .q-title { font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:300;line-height:1.3;color:var(--text-primary);margin-bottom:1.2rem; }
-    .q-title span { background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-    .q-body { font-size:clamp(0.95rem,2.5vw,1.1rem);color:var(--text-secondary);line-height:1.9;font-weight:300;margin-bottom:2.2rem;max-width:520px;margin-left:auto;margin-right:auto; }
-    .q-features { display:flex;flex-wrap:wrap;justify-content:center;gap:0.7rem;margin-bottom:2.5rem; }
-    .q-feature { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:0.45rem 1rem;font-size:0.72rem;letter-spacing:0.1em;color:var(--text-muted);font-weight:300; }
+    .questionnaire-glass::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.09) 0%,transparent 70%);pointer-events:none; }
+    .q-eyebrow,.q-supertag { font-size:var(--fs-label);letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted); }
+    .q-eyebrow { color:var(--gold);margin-bottom:0.4rem; }
+    .q-supertag { margin-bottom:1.5rem; }
+    .q-title {
+      font-size:var(--fs-heading);
+      font-weight:300;line-height:1.35;color:var(--text-primary);
+      margin-bottom:1rem;
+    }
+    .q-title span { color:var(--gold-light); }
+    .q-body {
+      font-size:var(--fs-body);
+      color:var(--text-secondary);line-height:1.9;font-weight:300;
+      max-width:520px;margin:0 auto 2rem;
+    }
+    .q-features {
+      display:flex;flex-wrap:wrap;justify-content:center;gap:0.7rem;margin-bottom:2.4rem;
+      font-size:var(--fs-label);
+    }
+    .q-feature {
+      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);
+      border-radius:30px;padding:0.45rem 1.2rem;color:var(--text-muted);
+      letter-spacing:0.16em;text-transform:uppercase;
+    }
 
     /* ─── MÉTHODE ─── */
     .methode-section { text-align:center; }
-    .methode-title { font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:300;color:var(--text-primary);line-height:1.35;margin-bottom:0.8rem; }
-    .methode-title span { background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-    .methode-sub { font-size:clamp(0.95rem,2.5vw,1.1rem);color:var(--text-secondary);font-weight:300;max-width:580px;margin:0 auto 3.5rem;line-height:1.9; }
+    .methode-title {
+      font-size:var(--fs-heading);
+      font-weight:300;color:var(--text-primary);
+      line-height:1.4;margin-bottom:0.9rem;
+    }
+    .methode-title span { color:var(--gold-light); }
+    .methode-sub {
+      font-size:var(--fs-body);
+      color:var(--text-secondary);font-weight:300;
+      max-width:580px;margin:0 auto 3.2rem;line-height:1.9;
+    }
     .steps-list { display:flex;flex-direction:column;max-width:680px;margin:0 auto; }
-    .step-item { display:flex;align-items:center;gap:clamp(16px,3vw,28px);padding:clamp(1rem,2.5vh,1.5rem) clamp(1rem,2.5vw,1.8rem);border-left:2px solid currentColor;background:rgba(255,255,255,0.02);margin-bottom:2px;text-align:left;transition:background 0.3s; }
+    .step-item {
+      display:flex;align-items:center;gap:clamp(16px,3vw,26px);
+      padding:1.1rem 1.4rem;border-left:2px solid currentColor;
+      background:rgba(255,255,255,0.02);margin-bottom:2px;text-align:left;
+      transition:background 0.25s;
+      font-size:var(--fs-body);
+    }
     .step-item:hover { background:rgba(255,255,255,0.04); }
-    .step-letter { font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1;min-width:clamp(28px,4vw,45px); }
-    .step-title { font-family:'Jost',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:4px; }
-    .step-desc { font-family:'Jost',sans-serif;font-size:clamp(0.8rem,1.8vw,0.9rem);font-weight:300;color:var(--text-muted);line-height:1.6; }
+    .step-letter {
+      font-size:clamp(1.8rem,3vw,2.4rem);
+      font-weight:700;line-height:1;min-width:clamp(28px,4vw,40px);
+    }
+    .step-title {
+      font-size:var(--fs-label);
+      letter-spacing:0.25em;text-transform:uppercase;margin-bottom:4px;
+    }
+    .step-desc { font-size:var(--fs-body);color:var(--text-muted);line-height:1.6; }
 
     /* ─── RÉSULTATS ─── */
     .results-section { text-align:center; }
     .results-list { display:flex;flex-direction:column;gap:0.8rem;max-width:660px;margin:0 auto; }
-    .result-item { display:flex;align-items:flex-start;gap:1rem;padding:clamp(0.9rem,2vh,1.3rem) clamp(1rem,2.5vw,1.6rem);border-radius:8px;background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.12);text-align:left;backdrop-filter:blur(8px);transition:border-color 0.3s; }
-    .result-item:hover { border-color:rgba(201,168,76,0.3); }
+    .result-item {
+      display:flex;align-items:flex-start;gap:0.9rem;
+      padding:0.95rem 1.4rem;border-radius:8px;
+      background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.14);
+      text-align:left;backdrop-filter:blur(8px);
+      font-size:var(--fs-body);
+    }
     .result-icon { color:var(--gold);font-size:0.9rem;padding-top:3px;flex-shrink:0; }
-    .result-text { font-size:clamp(0.85rem,2vw,0.98rem);font-weight:300;color:var(--text-secondary);line-height:1.65; }
+    .result-text { color:var(--text-secondary);line-height:1.65;font-weight:300; }
 
     /* ─── CITATION ─── */
     .citation-section { text-align:center; }
-    .citation-glass { background:rgba(108,52,131,0.05);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(108,52,131,0.2);border-radius:16px;padding:clamp(3rem,6vw,5rem) clamp(2rem,5vw,4rem);max-width:700px;margin:0 auto;position:relative; }
-    .citation-glass::before { content:'"';position:absolute;top:10px;left:24px;font-family:'Cormorant Garamond',serif;font-size:8rem;color:var(--gold);opacity:0.07;line-height:1;pointer-events:none; }
-    .citation-text { font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,4vw,2.4rem);font-weight:300;font-style:italic;line-height:1.65;color:var(--text-primary); }
+    .citation-glass {
+      background:rgba(108,52,131,0.05);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border:1px solid rgba(108,52,131,0.22);border-radius:16px;
+      padding:clamp(3rem,6vw,4.4rem) clamp(2rem,5vw,3.5rem);
+      max-width:700px;margin:0 auto;position:relative;
+      font-size:var(--fs-body);
+    }
+    .citation-glass::before {
+      content:'"';position:absolute;top:4px;left:20px;
+      font-size:4.5rem;color:var(--gold);opacity:0.07;line-height:1;
+    }
+    .citation-text { font-style:italic;color:var(--text-primary);line-height:1.8; }
 
     /* ─── CTA FINAL ─── */
     .cta-final { text-align:center; }
-    .cta-title { font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:300;line-height:1.3;color:var(--text-primary);margin-bottom:1rem; }
-    .cta-title span { background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-    .cta-note { font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-top:1.5rem; }
+    .cta-title {
+      font-size:var(--fs-heading);
+      font-weight:300;line-height:1.4;color:var(--text-primary);
+      margin-bottom:1.1rem;
+    }
+    .cta-title span { color:var(--gold-light); }
+    .cta-note { font-size:var(--fs-label);letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-top:1.5rem; }
 
     /* ─── FOOTER ─── */
-    footer { text-align:center;padding:2.5rem 1rem;font-size:0.7rem;letter-spacing:0.1em;color:var(--text-muted);border-top:1px solid rgba(255,255,255,0.04);line-height:2.2; }
+    footer {
+      text-align:center;padding:2.3rem 1rem;font-size:var(--fs-label);
+      letter-spacing:0.12em;color:var(--text-muted);
+      border-top:1px solid rgba(255,255,255,0.05);line-height:2.2;text-transform:uppercase;
+    }
+    footer em { text-transform:none;letter-spacing:0; }
     footer a { color:var(--gold);text-decoration:none; }
-    footer a:hover { opacity:0.75; }
+    footer a:hover { opacity:0.8; }
 
     @media (max-width:480px) {
-      .btn-primary { width:100%;max-width:300px;text-align:center; }
+      .btn-primary { width:100%;max-width:320px;text-align:center; }
+      .step-item { align-items:flex-start; }
     }
   </style>
 </head>
@@ -164,7 +239,7 @@
       mais un <em>message</em>&nbsp;?
     </p>
     <div class="hero-cta-wrap">
-      <a href="questionnaire.html" class="btn-primary">Découvrir ce qu'elle dit de moi</a>
+      <a href="accueill.html" class="btn-primary">Me libérer de mon anxiété</a>
       <p class="hero-sub">
         De la peur à la joie d'être soi &nbsp;·&nbsp;
         <a href="masques.html">Découvrir les 7 masques →</a>
@@ -196,13 +271,12 @@
       <p class="q-supertag">Le questionnaire unique</p>
       <h2 class="q-title">
         Quelle est votre<br>
-        <span>forme d'anxiété ?</span>
+        forme d'anxiété ?
       </h2>
       <p class="q-body">
-        V.A.L.E.U.R© est le premier parcours qui cartographie
-        précisément <strong style="color:rgba(255,255,255,0.85);font-weight:400">vos 7 peurs dominantes</strong> —
-        pas un diagnostic générique, une carte personnelle
-        de ce qui vous bloque et du chemin pour en sortir.
+        V.A.L.E.U.R© est le premier parcours qui cartographie précisément
+        vos 7 peurs dominantes — pas un diagnostic générique, une carte
+        personnelle de ce qui vous bloque et du chemin pour en sortir.
       </p>
       <div class="q-features">
         <span class="q-feature">Confidentiel</span>
@@ -220,37 +294,55 @@
     <p class="section-tag">La solution</p>
     <h2 class="methode-title">
       V.A.L.E.U.R© est le premier parcours<br>
-      qui cible <span>toutes</span> les formes de l'anxiété.
+      qui cible toutes les formes de l'anxiété.
     </h2>
     <p class="methode-sub">
       6 étapes concrètes. Pas des mois à parler de vos problèmes —
-      une identification précise de ce qui vous bloque
-      et un chemin clair pour vous en libérer.
+      une identification précise de ce qui vous bloque et un chemin
+      clair pour vous en libérer.
     </p>
     <div class="steps-list">
       <div class="step-item" style="color:#c0392b;border-color:#c0392b">
         <div class="step-letter" style="color:#c0392b">V</div>
-        <div><div class="step-title" style="color:#c0392b">Voir</div><div class="step-desc">Je vois le masque qui s'active et la peur qui le nourrit.</div></div>
+        <div>
+          <div class="step-title" style="color:#c0392b">Voir</div>
+          <div class="step-desc">Je vois le masque qui s'active et la peur qui le nourrit.</div>
+        </div>
       </div>
       <div class="step-item" style="color:#c4622d;border-color:#c4622d">
         <div class="step-letter" style="color:#c4622d">A</div>
-        <div><div class="step-title" style="color:#c4622d">Accueillir</div><div class="step-desc">J'accueille l'émotion sous le masque, sans la fuir.</div></div>
+        <div>
+          <div class="step-title" style="color:#c4622d">Accueillir</div>
+          <div class="step-desc">J'accueille l'émotion sous le masque, sans la fuir.</div>
+        </div>
       </div>
       <div class="step-item" style="color:#c9a84c;border-color:#c9a84c">
         <div class="step-letter" style="color:#c9a84c">L</div>
-        <div><div class="step-title" style="color:#c9a84c">Localiser</div><div class="step-desc">Je localise dans mon corps où le masque se manifeste.</div></div>
+        <div>
+          <div class="step-title" style="color:#c9a84c">Localiser</div>
+          <div class="step-desc">Je localise dans mon corps où le masque se manifeste.</div>
+        </div>
       </div>
       <div class="step-item" style="color:#2d6a4f;border-color:#2d6a4f">
         <div class="step-letter" style="color:#2d6a4f">E</div>
-        <div><div class="step-title" style="color:#2d6a4f">Explorer</div><div class="step-desc">J'explore le conflit entre mon masque et ma valeur authentique.</div></div>
+        <div>
+          <div class="step-title" style="color:#2d6a4f">Explorer</div>
+          <div class="step-desc">J'explore le conflit entre mon masque et ma valeur authentique.</div>
+        </div>
       </div>
       <div class="step-item" style="color:#1b6fa2;border-color:#1b6fa2">
         <div class="step-letter" style="color:#1b6fa2">U</div>
-        <div><div class="step-title" style="color:#1b6fa2">Unifier</div><div class="step-desc">J'intègre la part blessée et je choisis ma valeur.</div></div>
+        <div>
+          <div class="step-title" style="color:#1b6fa2">Unifier</div>
+          <div class="step-desc">J'intègre la part blessée et je choisis ma valeur.</div>
+        </div>
       </div>
       <div class="step-item" style="color:#7d3c98;border-color:#7d3c98">
         <div class="step-letter" style="color:#7d3c98">R</div>
-        <div><div class="step-title" style="color:#7d3c98">Renforcer</div><div class="step-desc">J'ancre le nouveau choix pour qu'il devienne ma nouvelle voie.</div></div>
+        <div>
+          <div class="step-title" style="color:#7d3c98">Renforcer</div>
+          <div class="step-desc">J'ancre le nouveau choix pour qu'il devienne ma nouvelle voie.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -261,11 +353,26 @@
   <section class="results-section reveal">
     <p class="section-tag">Ce que vous pouvez obtenir</p>
     <div class="results-list">
-      <div class="result-item"><div class="result-icon">✦</div><div class="result-text">Sortir enfin des schémas répétitifs qui vous épuisent depuis trop longtemps</div></div>
-      <div class="result-item"><div class="result-icon">✦</div><div class="result-text">Comprendre ce qui vous bloque et savoir exactement quoi en faire, étape par étape</div></div>
-      <div class="result-item"><div class="result-icon">✦</div><div class="result-text">Ne plus être gouverné(e) par des peurs qui ne vous appartiennent plus</div></div>
-      <div class="result-item"><div class="result-icon">✦</div><div class="result-text">Retrouver votre élan vital, votre spontanéité, votre liberté intérieure</div></div>
-      <div class="result-item"><div class="result-icon">✦</div><div class="result-text">Ressentir la joie d'être vous — sans masque, sans rôle, sans prison</div></div>
+      <div class="result-item">
+        <div class="result-icon">✦</div>
+        <div class="result-text">Sortir enfin des schémas répétitifs qui vous épuisent depuis trop longtemps</div>
+      </div>
+      <div class="result-item">
+        <div class="result-icon">✦</div>
+        <div class="result-text">Comprendre ce qui vous bloque et savoir exactement quoi en faire, étape par étape</div>
+      </div>
+      <div class="result-item">
+        <div class="result-icon">✦</div>
+        <div class="result-text">Ne plus être gouverné(e) par des peurs qui ne vous appartiennent plus</div>
+      </div>
+      <div class="result-item">
+        <div class="result-icon">✦</div>
+        <div class="result-text">Retrouver votre élan vital, votre spontanéité, votre liberté intérieure</div>
+      </div>
+      <div class="result-item">
+        <div class="result-icon">✦</div>
+        <div class="result-text">Ressentir la joie d'être vous — sans masque, sans rôle, sans prison</div>
+      </div>
     </div>
   </section>
 
@@ -286,11 +393,11 @@
   <!-- ═══ CTA FINAL ═══ -->
   <section class="cta-final reveal">
     <h2 class="cta-title">
-      Quelle est votre<br>
-      <span>forme d'anxiété ?</span>
+      Prêt·e à découvrir<br>
+      les 7 visages de votre anxiété ?
     </h2>
-    <a href="questionnaire.html" class="btn-primary">Commencer ma cartographie</a>
-    <p class="cta-note">Confidentiel &nbsp;·&nbsp; Sans compte &nbsp;·&nbsp; À votre rythme</p>
+    <a href="accueill.html" class="btn-primary">Me libérer de mon anxiété</a>
+    <p class="cta-note">Confidentiel &nbsp;·&nbsp; À votre rythme</p>
   </section>
 
   <footer>
