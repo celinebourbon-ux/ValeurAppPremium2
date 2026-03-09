@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>V.A.L.E.U.R© — Mon Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <style>
+    .valeur-steps-accordion { display: grid; gap: 1rem; margin: 1.5rem 0; }
+
+    .step-group {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      transition: var(--transition-fast);
+    }
+
+    .step-group:focus-within {
+      border-color: rgba(201,168,76,0.3);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.9rem 1.1rem 0;
+    }
+
+    .step-key {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1;
+      min-width: 1.6rem;
+    }
+
+    .step-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .step-group textarea {
+      border: none !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      padding: 0.6rem 1.1rem 0.9rem !important;
+      border-top: 1px solid rgba(255,255,255,0.04) !important;
+      margin-top: 0.5rem;
+      font-size: 0.92rem !important;
+    }
+
+    .step-group textarea:focus {
+      background: rgba(255,255,255,0.03) !important;
+      box-shadow: none !important;
+      border-top-color: rgba(201,168,76,0.2) !important;
+    }
+
+    .export-section {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="orbe orbe-1" style="opacity:0.05;"></div>
+
+<div id="progress-bar" class="progress-bar" style="transform:scaleX(0)"></div>
+
+<header class="glass-header">
+  <div class="header-content">
+    <a href="dashboard.html" class="back-btn">← Dashboard</a>
+    <a href="index.html" class="logo-text">📓 Journal V.A.L.E.U.R©</a>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="nav-menu">
+      <a href="questionnaire.html">🔍 Questionnaire</a>
+      <a href="journal.html" class="active">📓 Journal</a>
+      <a href="module-0.html">📚 Modules</a>
+      <a href="dashboard.html">🏠 Dashboard</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="section text-center animate-up">
+    <h1>Mon Journal</h1>
+    <p class="lead">Chaque observation de masque est un pas vers votre nature authentique.</p>
+  </section>
+
+  <!-- Stats journal -->
+  <div class="stats-grid animate-up delay-1">
+    <div class="stat-card glass-card">
+      <span class="stat-value" id="total-entries">0</span>
+      <span class="stat-label">Observations totales</span>
+    </div>
+    <div class="stat-card glass-card">
+      <span class="stat-value" id="streak-days">0</span>
+      <span class="stat-label">Jours consécutifs</span>
+    </div>
+    <div class="stat-card glass-card">
+      <span class="stat-value" id="most-active-mask" style="-webkit-text-fill-color:unset; color:var(--text-secondary); font-size:clamp(1rem,3vw,1.5rem); display:flex; align-items:center; justify-content:center; height:100%;">—</span>
+      <span class="stat-label">Masque le plus fréquent</span>
+    </div>
+  </div>
+
+  <hr class="gold-divider">
+
+  <!-- Nouvelle entrée -->
+  <section class="glass-card section animate-up delay-2">
+    <h4>Nouvelle observation</h4>
+    <h3>Appliquer la méthode V.A.L.E.U.R©</h3>
+
+    <form id="journal-form-full">
+      <div class="form-row">
+        <select name="masque" required>
+          <option value="">🎭 Choisir le masque détecté</option>
+          <option value="rouge">🔴 Rouge — Mort / Maladie</option>
+          <option value="orange">🟠 Orange — Souffrance psychique</option>
+          <option value="jaune">🟡 Jaune — Inconnu / Incertitude</option>
+          <option value="vert">🟢 Vert — Rejet / Abandon</option>
+          <option value="bleu">🔵 Bleu — Impuissance</option>
+          <option value="indigo">🟣 Indigo — Échec / Inadéquation</option>
+          <option value="violet">💜 Violet — Perte d'identité</option>
+        </select>
+        <input type="datetime-local" name="timestamp" id="timestamp-input" required>
+      </div>
+
+      <div class="valeur-steps-accordion">
+
+        <div class="step-group">
+          <div class="step-header">
+            <span class="step-key" style="color:#EF4444">V</span>
+            <span class="step-label">Voir — Le déclencheur</span>
+          </div>
+          <textarea name="V" placeholder="Quelle situation a activé ce masque aujourd'hui ? Soyez précis·e." rows="3"></textarea>
+        </div>
+
+        <div class="step-group">
+          <div class="step-header">
+            <span class="step-key" style="color:#F97316">A</span>
+            <span class="step-label">Accueillir — L'émotion brute</span>
+          </div>
+          <textarea name="A" placeholder="Quelle émotion se cache sous le masque ? (peur, honte, colère, tristesse…)" rows="3"></textarea>
+        </div>
+
+        <div class="step-group">
+          <div class="step-header">
+            <span class="step-key" style="color:#EAB308">L</span>
+            <span class="step-label">Localiser — Dans le corps</span>
+          </div>
+          <textarea name="L" placeholder="Où ressentez-vous cette émotion dans votre corps ? (gorge, ventre, poitrine, mâchoire…)" rows="2"></textarea>
+        </div>
+
+        <div class="step-group">
+          <div class="step-header">
+            <span class="step-key" style="color:#22C55E">E</span>
+            <span class="step-label">Explorer — Le conflit intérieur</span>
+          </div>
+          <textarea name="E" placeholder="'Une part de moi voudrait… mais une autre part a encore plus peur de…' Nommez le conflit." rows="3"></textarea>
+        </div>
+
+        <div class="step-group">
+          <div class="step-header">
+            <span class="step-key" style="color:#3B82F6">U</span>
+            <span class="step-label">Unifier — La réconciliation</span>
+          </div>
+          <textarea name="U" placeholder="Comment avez-vous (ou souhaitez-vous) réconcilier les deux parties ?" rows="3"></textarea>
+        </div>
+
+        <div class="step-group">
+          <div class="step-header">
+            <span class="step-key" style="color:#D946EF">R</span>
+            <span class="step-label">Renforcer — L'ancrage conscient</span>
+          </div>
+          <textarea name="R" placeholder="Un geste, une phrase, une respiration… Comment ancrer cette prise de conscience ?" rows="2"></textarea>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn-primary full-width" style="margin-top:0.5rem; font-size:1rem;">
+        💾 Enregistrer cette observation
+      </button>
+    </form>
+  </section>
+
+  <hr class="gold-divider">
+
+  <!-- Historique -->
+  <section class="glass-card section animate-up delay-3">
+    <div class="history-header">
+      <div>
+        <h4>Historique</h4>
+        <h3 style="margin:0;">Mes observations (<span id="entries-count">0</span>)</h3>
+      </div>
+      <div class="filters">
+        <select id="filter-masque">
+          <option value="">Tous les masques</option>
+          <option value="rouge">🔴 Rouge</option>
+          <option value="orange">🟠 Orange</option>
+          <option value="jaune">🟡 Jaune</option>
+          <option value="vert">🟢 Vert</option>
+          <option value="bleu">🔵 Bleu</option>
+          <option value="indigo">🟣 Indigo</option>
+          <option value="violet">💜 Violet</option>
+        </select>
+        <select id="filter-period">
+          <option value="">Toute période</option>
+          <option value="7">7 derniers jours</option>
+          <option value="30">30 derniers jours</option>
+          <option value="90">3 derniers mois</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="entries-list" class="entries-grid"></div>
+
+    <button id="load-more" class="btn-secondary full-width" style="display:none; margin-top:1.5rem;">
+      Charger plus d'observations ↓
+    </button>
+  </section>
+
+</main>
+
+<button class="fab" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Remonter en haut">↑</button>
+
+<div class="copyright-bar">
+  © Céline Bourbon — Méthode V.A.L.E.U.R© — Tous droits réservés — Reproduction interdite
+</div>
+
+<script src="assets/js/valeur-core.js"></script>
+<script src="assets/js/journal-manager.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    JournalManager.init();
+
+    // Hamburger
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('nav-menu');
+    if (ham && nav) {
+      ham.addEventListener('click', () => {
+        ham.classList.toggle('active');
+        nav.classList.toggle('active');
+      });
+      document.addEventListener('click', e => {
+        if (!ham.contains(e.target) && !nav.contains(e.target)) {
+          ham.classList.remove('active');
+          nav.classList.remove('active');
+        }
+      });
+    }
+
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      ValeurCore.updateProgressBar(pct);
+    });
+  });
+</script>
+</body>
+</html>

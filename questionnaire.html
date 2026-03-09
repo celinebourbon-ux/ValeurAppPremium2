@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>V.A.L.E.U.R© — Questionnaire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <style>
+    .questionnaire-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .questionnaire-card {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+    }
+    .steps-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin: 2rem 0;
+    }
+    .step-preview-item {
+      padding: 1rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .step-preview-item strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+    @media (max-width: 480px) {
+      .steps-preview { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="orbe orbe-1"></div>
+<div id="progress-bar" class="progress-bar" style="transform:scaleX(0)"></div>
+
+<header class="glass-header">
+  <div class="header-content">
+    <a href="dashboard.html" class="back-btn">← Dashboard</a>
+    <a href="index.html" class="logo-text">V.A.L.E.U.R©</a>
+    <nav>
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <a href="journal.html">📓 Journal</a>
+    </nav>
+  </div>
+</header>
+
+<div class="questionnaire-container">
+  <div class="questionnaire-card glass-card animate-up">
+
+    <div class="hero-tag" style="margin-bottom:1.5rem;">
+      ✦ La clé de votre parcours
+    </div>
+
+    <h1 style="font-size:clamp(2.5rem,8vw,5rem); margin-bottom:1rem;">
+      Questionnaire<br>V.A.L.E.U.R©
+    </h1>
+
+    <p class="lead" style="margin-bottom:1.5rem;">
+      Cartographiez vos défenses de manière chirurgicale.<br>
+      Découvrez vos masques dominants.
+    </p>
+
+    <div class="steps-preview">
+      <div class="step-preview-item"><strong>⏱ 15 min</strong>Durée estimée</div>
+      <div class="step-preview-item"><strong>🎯 Précis</strong>7 dimensions analysées</div>
+      <div class="step-preview-item"><strong>🔒 Privé</strong>Vos données restent vôtres</div>
+    </div>
+
+    <p style="margin-bottom:2rem; font-size:0.9rem;">
+      Vous aurez besoin du code d'accès : <strong style="color:var(--gold); font-size:1.1rem; letter-spacing:0.1em;">VALEUR2025</strong>
+    </p>
+
+    <div style="display:flex; flex-direction:column; gap:1rem; align-items:center;">
+      <a href="https://questionnaire-valeur-psyh.netlify.app" target="_blank" rel="noopener" class="btn-primary btn-hero">
+        🔍 Accéder au Questionnaire
+      </a>
+      <a href="https://celinebourbon-ux.github.io/Questionnaire-Valeur-V4/" target="_blank" rel="noopener" class="btn-secondary">
+        Version alternative →
+      </a>
+    </div>
+
+    <p style="font-size:0.75rem; margin-top:2rem; opacity:0.5;">
+      © Céline Bourbon — Méthode V.A.L.E.U.R© — Questionnaire propriétaire<br>
+      Après le questionnaire, revenez ici pour commencer les modules.
+    </p>
+
+  </div>
+</div>
+
+<div class="copyright-bar">
+  © Céline Bourbon — Méthode V.A.L.E.U.R© — Tous droits réservés
+</div>
+
+<script src="assets/js/valeur-core.js"></script>
+</body>
+</html>

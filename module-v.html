@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>V.A.L.E.U.R© — Module V : Voir</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <style>
+    .exercise-block { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:var(--radius-md); padding:1.5rem; margin:1rem 0; }
+    .exercise-block h4 { color:var(--gold); margin-bottom:1rem; }
+    .trigger-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:0.8rem; margin:1rem 0; }
+    .trigger-item { padding:0.9rem; background:rgba(239,68,68,0.04); border:1px solid rgba(239,68,68,0.15); border-radius:var(--radius-sm); font-size:0.82rem; text-align:center; color:var(--text-secondary); cursor:default; transition:var(--transition-fast); }
+    .trigger-item:hover { background:rgba(239,68,68,0.08); border-color:rgba(239,68,68,0.3); color:var(--text-primary); }
+  </style>
+</head>
+<body>
+<div class="orbe orbe-1" style="background:radial-gradient(circle,#EF4444,transparent);opacity:0.05;"></div>
+<div id="progress-bar" class="progress-bar" style="transform:scaleX(0);background:linear-gradient(90deg,#EF4444,#F97316)!important;"></div>
+<header class="glass-header">
+  <div class="header-content">
+    <a href="module-0.html" class="back-btn">← Module 0</a>
+    <a href="index.html" class="logo-text">V.A.L.E.U.R©</a>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <nav id="nav-menu">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <a href="journal.html">📓 Journal</a>
+      <a href="module-a.html">→ Module A</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="section text-center animate-up">
+    <div class="phase-badge" style="color:#EF4444; border-color:rgba(239,68,68,0.3);">Étape 1 · V.A.L.E.U.R©</div>
+    <h1 style="background:linear-gradient(135deg,#EF4444,#F97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Voir</h1>
+    <p class="lead">Identifier le masque actif et son déclencheur</p>
+  </section>
+  <section class="glass-card section animate-up delay-1">
+    <h4>La première étape</h4>
+    <h3>Nommer ce qui se passe</h3>
+    <p>Vous ne pouvez pas transformer ce que vous ne pouvez pas voir. La première étape est de prendre conscience, sans jugement, du masque qui est en train de s'activer.</p>
+    <p style="margin-top:1rem;">Un masque se repère à travers : une réaction disproportionnée, une pensée répétitive, une tension dans le corps, un comportement automatique que vous regrettez après.</p>
+  </section>
+  <section class="glass-card section animate-up delay-2">
+    <h4>Les déclencheurs fréquents</h4>
+    <h3>Qu'est-ce qui active un masque ?</h3>
+    <div class="trigger-grid">
+      <div class="trigger-item">Une critique reçue</div>
+      <div class="trigger-item">Une attente non comblée</div>
+      <div class="trigger-item">Un symptôme physique</div>
+      <div class="trigger-item">Un conflit relationnel</div>
+      <div class="trigger-item">Une incertitude</div>
+      <div class="trigger-item">Une erreur commise</div>
+      <div class="trigger-item">Un regard perçu</div>
+      <div class="trigger-item">Une décision à prendre</div>
+    </div>
+  </section>
+  <section class="glass-card section animate-up delay-3">
+    <h4>Exercice pratique</h4>
+    <h3>Observer sans juger</h3>
+    <div class="exercise-block">
+      <h4>Exercice 1 · La pause consciente</h4>
+      <p>Dès que vous ressentez une réaction forte, posez-vous 3 questions :</p>
+      <p style="margin:1rem 0; font-family:var(--font-display); font-style:italic; font-size:1.1rem; color:var(--text-primary);">"Quel masque est actif en ce moment ?"<br>"Quel déclencheur l'a activé ?"<br>"Quelle peur universelle se cache derrière ?"</p>
+      <p>Notez-le dans votre journal. Sans juger. Juste observer.</p>
+    </div>
+    <div style="text-align:center; margin-top:2rem;">
+      <a href="journal.html" class="btn-primary">📓 Appliquer dans mon journal</a>
+    </div>
+  </section>
+  <div style="display:flex; gap:1rem; justify-content:space-between; flex-wrap:wrap; margin-top:2rem;" class="animate-up delay-4">
+    <a href="module-0.html" class="btn-secondary">← Comprendre</a>
+    <a href="module-a.html" class="btn-primary">Module A : Accueillir →</a>
+  </div>
+</main>
+<button class="fab" id="fab-journal" title="Journal">📓</button>
+<div id="journal-modal" class="modal-overlay" style="display:none;">
+  <div class="glass-card modal-content">
+    <button class="modal-close" onclick="closeJournalModal()">✕</button>
+    <h4>Module V — Observer un masque</h4>
+    <form id="quick-journal-form">
+      <select name="masque" required style="margin-bottom:1rem;"><option value="">Quel masque voyez-vous ?</option><option value="rouge">🔴 Rouge</option><option value="orange">🟠 Orange</option><option value="jaune">🟡 Jaune</option><option value="vert">🟢 Vert</option><option value="bleu">🔵 Bleu</option><option value="indigo">🟣 Indigo</option><option value="violet">💜 Violet</option></select>
+      <div class="step-item"><label><span class="step-letter" style="color:#EF4444">V</span> — VOIR le déclencheur</label><textarea name="V" placeholder="Qu'est-ce qui l'a activé ?" rows="3"></textarea></div>
+      <div class="step-item" style="margin-top:0.8rem;"><label><span class="step-letter" style="color:#F97316">A</span> — Émotion</label><textarea name="A" placeholder="Quelle émotion ?" rows="2"></textarea></div>
+      <input type="hidden" name="L" value=""><input type="hidden" name="E" value=""><input type="hidden" name="U" value=""><input type="hidden" name="R" value="">
+      <button type="submit" class="btn-primary full-width" style="margin-top:1rem;">💾 Sauvegarder</button>
+    </form>
+  </div>
+</div>
+<div class="copyright-bar">© Céline Bourbon — Méthode V.A.L.E.U.R© — Tous droits réservés</div>
+<script src="assets/js/valeur-core.js"></script>
+<script src="assets/js/journal-manager.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  JournalManager.init();
+  const ham = document.getElementById('hamburger'), nav = document.getElementById('nav-menu');
+  if (ham && nav) {
+    ham.addEventListener('click', () => { ham.classList.toggle('active'); nav.classList.toggle('active'); });
+    document.addEventListener('click', e => { if (!ham.contains(e.target) && !nav.contains(e.target)) { ham.classList.remove('active'); nav.classList.remove('active'); } });
+  }
+  window.addEventListener('scroll', () => ValeurCore.updateProgressBar(window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100));
+});
+</script>
+</body>
+</html>

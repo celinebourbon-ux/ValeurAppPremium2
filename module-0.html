@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>V.A.L.E.U.R© — Module 0 : Comprendre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <style>
+    .masque-card {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      padding: 1.3rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius-md);
+      border-left: 3px solid;
+      transition: var(--transition-fast);
+      margin-bottom: 0.8rem;
+    }
+    .masque-card:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateX(5px);
+    }
+    .masque-card-emoji { font-size: 1.8rem; flex-shrink: 0; }
+    .masque-card-body {}
+    .masque-card-body strong {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .masque-card-body p { font-size: 0.85rem; line-height: 1.5; margin: 0; }
+
+    .acronym-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .acronym-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition-fast);
+    }
+    .acronym-item:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(201,168,76,0.2);
+    }
+    .acronym-letter {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--gold);
+      min-width: 2rem;
+      line-height: 1;
+    }
+    .acronym-info strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 0.15rem;
+    }
+    .acronym-info small {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+      display: block;
+    }
+
+    .accroche-block {
+      border-left: 2px solid var(--gold-dim);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      background: rgba(201,168,76,0.03);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .cta-questionnaire {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 2.5rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(201,168,76,0.02));
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-lg);
+    }
+  </style>
+</head>
+<body>
+
+<div class="orbe orbe-1" style="opacity:0.05;"></div>
+
+<div id="progress-bar" class="progress-bar" style="transform:scaleX(0)"></div>
+
+<header class="glass-header">
+  <div class="header-content">
+    <a href="dashboard.html" class="back-btn">← Dashboard</a>
+    <a href="index.html" class="logo-text">V.A.L.E.U.R©</a>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="nav-menu">
+      <a href="questionnaire.html">🔍 Questionnaire</a>
+      <a href="journal.html">📓 Journal</a>
+      <a href="module-0.html" class="active">📚 Modules</a>
+      <a href="dashboard.html">🏠 Dashboard</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="section text-center animate-up">
+    <div class="phase-badge">Module 0 · Fondations</div>
+    <h1>Comprendre</h1>
+    <p class="lead">Pourquoi vous sentez-vous parfois étranger·e à vous-même ?</p>
+  </section>
+
+  <!-- Accroche -->
+  <section class="glass-card section animate-up delay-1">
+    <h4>L'effet "c'est exactement mon problème"</h4>
+
+    <div class="accroche-block">
+      "Vous vous adaptez à tout le monde sauf à vous-même ?"
+    </div>
+    <div class="accroche-block">
+      "Vous savez exactement ce que vous devriez faire… mais vous ne le faites pas."
+    </div>
+    <div class="accroche-block">
+      "Et si votre anxiété n'était pas un problème, mais une peur déguisée ?"
+    </div>
+
+    <p style="margin-top:1.5rem;">Ces sensations ne signifient pas que vous êtes défaillant·e. Elles signifient que votre cerveau a développé des <strong style="color:var(--text-primary)">stratégies de protection</strong> — appelées masques — qui sont devenues inutiles, voire paralysantes.</p>
+    <p>La méthode V.A.L.E.U.R© vous aide à les identifier, les traverser, et retrouver votre nature authentique.</p>
+  </section>
+
+  <!-- Les 7 masques -->
+  <section class="glass-card section animate-up delay-2">
+    <h4>Les 7 Masques</h4>
+    <h3>Peurs universelles → Stratégies de protection</h3>
+    <p style="margin-bottom:1.5rem;">Tout être humain porte ces 7 peurs. Certains masques sont plus actifs que d'autres selon votre histoire.</p>
+
+    <div class="masque-card" style="border-color:#EF4444;">
+      <span class="masque-card-emoji">🔴</span>
+      <div class="masque-card-body">
+        <strong style="color:#EF4444;">Rouge — Masque de la vigilance</strong>
+        <p><em>Peur :</em> Mort / Maladie · <em>Manifestation :</em> Hypervigilance somatique, hypochondrie, contrôle permanent du corps</p>
+      </div>
+    </div>
+
+    <div class="masque-card" style="border-color:#F97316;">
+      <span class="masque-card-emoji">🟠</span>
+      <div class="masque-card-body">
+        <strong style="color:#F97316;">Orange — Masque de l'évitement</strong>
+        <p><em>Peur :</em> Souffrance psychique · <em>Manifestation :</em> Évitement émotionnel, anesthésie affective, suroccupation</p>
+      </div>
+    </div>
+
+    <div class="masque-card" style="border-color:#EAB308;">
+      <span class="masque-card-emoji">🟡</span>
+      <div class="masque-card-body">
+        <strong style="color:#EAB308;">Jaune — Masque du contrôle</strong>
+        <p><em>Peur :</em> Inconnu / Incertitude · <em>Manifestation :</em> Obsession de contrôle, procrastination, pensées intrusives</p>
+      </div>
+    </div>
+
+    <div class="masque-card" style="border-color:#22C55E;">
+      <span class="masque-card-emoji">🟢</span>
+      <div class="masque-card-body">
+        <strong style="color:#22C55E;">Vert — Masque de l'adaptation</strong>
+        <p><em>Peur :</em> Rejet / Abandon · <em>Manifestation :</em> Hypersensibilité relationnelle, besoin d'approbation, fusion affective</p>
+      </div>
+    </div>
+
+    <div class="masque-card" style="border-color:#3B82F6;">
+      <span class="masque-card-emoji">🔵</span>
+      <div class="masque-card-body">
+        <strong style="color:#3B82F6;">Bleu — Masque de la domination</strong>
+        <p><em>Peur :</em> Impuissance · <em>Manifestation :</em> Hypercontrôle relationnel, rigidité, perfectionnisme organisationnel</p>
+      </div>
+    </div>
+
+    <div class="masque-card" style="border-color:#8B5CF6;">
+      <span class="masque-card-emoji">🟣</span>
+      <div class="masque-card-body">
+        <strong style="color:#8B5CF6;">Indigo — Masque de la performance</strong>
+        <p><em>Peur :</em> Échec / Inadéquation · <em>Manifestation :</em> Perfectionnisme, syndrome de l'imposteur, auto-sabotage</p>
+      </div>
+    </div>
+
+    <div class="masque-card" style="border-color:#D946EF;">
+      <span class="masque-card-emoji">💜</span>
+      <div class="masque-card-body">
+        <strong style="color:#D946EF;">Violet — Masque du faux self</strong>
+        <p><em>Peur :</em> Perte d'identité · <em>Manifestation :</em> Angoisse existentielle, sentiment de vide, perte de sens</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- L'acronyme VALEUR -->
+  <section class="glass-card section animate-up delay-2">
+    <h4>La méthode</h4>
+    <h3>Les 6 étapes V.A.L.E.U.R©</h3>
+    <p style="margin-bottom:1.5rem;">Un processus guidé pour transformer chaque activation de masque en opportunité de croissance.</p>
+
+    <div class="acronym-grid">
+      <div class="acronym-item">
+        <span class="acronym-letter" style="color:#EF4444;">V</span>
+        <div class="acronym-info">
+          <strong>Voir</strong>
+          <small>Identifier le masque actif et son déclencheur</small>
+        </div>
+      </div>
+      <div class="acronym-item">
+        <span class="acronym-letter" style="color:#F97316;">A</span>
+        <div class="acronym-info">
+          <strong>Accueillir</strong>
+          <small>Recevoir l'émotion sans la fuir ni la combattre</small>
+        </div>
+      </div>
+      <div class="acronym-item">
+        <span class="acronym-letter" style="color:#EAB308;">L</span>
+        <div class="acronym-info">
+          <strong>Localiser</strong>
+          <small>Trouver où ça se manifeste dans le corps</small>
+        </div>
+      </div>
+      <div class="acronym-item">
+        <span class="acronym-letter" style="color:#22C55E;">E</span>
+        <div class="acronym-info">
+          <strong>Explorer</strong>
+          <small>Nommer le conflit entre la peur et la valeur profonde</small>
+        </div>
+      </div>
+      <div class="acronym-item">
+        <span class="acronym-letter" style="color:#3B82F6;">U</span>
+        <div class="acronym-info">
+          <strong>Unifier</strong>
+          <small>Réconcilier les parties en conflit</small>
+        </div>
+      </div>
+      <div class="acronym-item">
+        <span class="acronym-letter" style="color:#D946EF;">R</span>
+        <div class="acronym-info">
+          <strong>Renforcer</strong>
+          <small>Ancrer la nouvelle posture avec des comportements choisis</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fondements scientifiques -->
+  <section class="glass-card section animate-up delay-3">
+    <h4>Fondements scientifiques</h4>
+    <h3>Une méthode basée sur des outils validés</h3>
+    <p>La méthode V.A.L.E.U.R© est fondée sur des instruments psychométriques reconnus :</p>
+    <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1rem;">
+      <span style="padding:0.3rem 0.8rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; font-size:0.75rem; color:var(--text-muted); letter-spacing:0.06em;">SHAI</span>
+      <span style="padding:0.3rem 0.8rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; font-size:0.75rem; color:var(--text-muted); letter-spacing:0.06em;">TAS-20</span>
+      <span style="padding:0.3rem 0.8rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; font-size:0.75rem; color:var(--text-muted); letter-spacing:0.06em;">IUS-12</span>
+      <span style="padding:0.3rem 0.8rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; font-size:0.75rem; color:var(--text-muted); letter-spacing:0.06em;">ECR-R</span>
+      <span style="padding:0.3rem 0.8rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; font-size:0.75rem; color:var(--text-muted); letter-spacing:0.06em;">LOC+NPI</span>
+      <span style="padding:0.3rem 0.8rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; font-size:0.75rem; color:var(--text-muted); letter-spacing:0.06em;">FMPS</span>
+      <span style="padding:0.3rem 0.8rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; font-size:0.75rem; color:var(--text-muted); letter-spacing:0.06em;">MSI</span>
+    </div>
+    <p style="margin-top:1rem; font-size:0.82rem; color:var(--text-muted);">
+      Basé sur le livre <em>"De la peur à la joie d'être soi"</em> — Céline Bourbon, Éd. L'Harmattan
+    </p>
+  </section>
+
+  <!-- CTA Questionnaire -->
+  <div class="cta-questionnaire section animate-up delay-4">
+    <h4>Prêt·e à vous révéler ?</h4>
+    <h3 style="margin-bottom:0.5rem;">Découvrez vos masques dominants</h3>
+    <p style="max-width:480px; margin-bottom:1.5rem;">Le questionnaire V.A.L.E.U.R© cartographie de manière chirurgicale la source de votre anxiété. Une vraie révélation.</p>
+    <a href="questionnaire.html" class="btn-primary btn-hero">
+      🔍 Faire le Questionnaire V.A.L.E.U.R©
+    </a>
+    <p style="font-size:0.75rem; margin-top:0.8rem; opacity:0.6;">Code d'accès : <strong>VALEUR2025</strong></p>
+  </div>
+
+</main>
+
+<button class="fab" id="fab-journal" title="Observer un masque">📓</button>
+
+<div id="journal-modal" class="modal-overlay" style="display:none;">
+  <div class="glass-card modal-content">
+    <button class="modal-close" onclick="closeJournalModal()">✕</button>
+    <h4>Journal V.A.L.E.U.R©</h4>
+    <h3 style="margin-bottom:1.5rem;">Observer un masque</h3>
+    <form id="quick-journal-form">
+      <select name="masque" required style="margin-bottom:1rem;">
+        <option value="">🎭 Quel masque détectez-vous ?</option>
+        <option value="rouge">🔴 Rouge</option>
+        <option value="orange">🟠 Orange</option>
+        <option value="jaune">🟡 Jaune</option>
+        <option value="vert">🟢 Vert</option>
+        <option value="bleu">🔵 Bleu</option>
+        <option value="indigo">🟣 Indigo</option>
+        <option value="violet">💜 Violet</option>
+      </select>
+      <div class="valeur-steps">
+        <div class="step-item"><label><span class="step-letter">V</span> — Voir</label>
+          <textarea name="V" placeholder="Déclencheur ?" rows="2"></textarea></div>
+        <div class="step-item"><label><span class="step-letter">A</span> — Accueillir</label>
+          <textarea name="A" placeholder="Émotion ressentie ?" rows="2"></textarea></div>
+        <div class="step-item"><label><span class="step-letter">L</span> — Localiser</label>
+          <textarea name="L" placeholder="Dans le corps ?" rows="1"></textarea></div>
+        <div class="step-item"><label><span class="step-letter">E</span> — Explorer</label>
+          <textarea name="E" placeholder="Conflit intérieur ?" rows="2"></textarea></div>
+        <div class="step-item"><label><span class="step-letter">U</span> — Unifier</label>
+          <textarea name="U" placeholder="Action consciente ?" rows="2"></textarea></div>
+        <div class="step-item"><label><span class="step-letter">R</span> — Renforcer</label>
+          <textarea name="R" placeholder="Ancrage ?" rows="2"></textarea></div>
+      </div>
+      <button type="submit" class="btn-primary full-width">💾 Sauvegarder</button>
+    </form>
+  </div>
+</div>
+
+<div class="copyright-bar">
+  © Céline Bourbon — Méthode V.A.L.E.U.R© — Tous droits réservés — Reproduction interdite
+</div>
+
+<script src="assets/js/valeur-core.js"></script>
+<script src="assets/js/journal-manager.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    JournalManager.init();
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('nav-menu');
+    if (ham && nav) {
+      ham.addEventListener('click', () => { ham.classList.toggle('active'); nav.classList.toggle('active'); });
+      document.addEventListener('click', e => {
+        if (!ham.contains(e.target) && !nav.contains(e.target)) { ham.classList.remove('active'); nav.classList.remove('active'); }
+      });
+    }
+    window.addEventListener('scroll', () => {
+      ValeurCore.updateProgressBar(window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100);
+    });
+  });
+</script>
+</body>
+</html>
