@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>V.A.L.E.U.R© — Accueil de l'application</title>
+  <meta name="description" content="Accueil de l'application V.A.L.E.U.R© — Mon espace pour cartographier mes peurs, comprendre mes masques et suivre mon parcours de libération.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:#080c14; color:#fff; font-family:'Cormorant Garamond',serif; overflow-x:hidden; }
+
+    :root {
+      --gold:#C9A84C; --gold-light:#e2c97e;
+      --gold-gradient:linear-gradient(135deg,#C9A84C 0%,#e2c97e 50%,#C9A84C 100%);
+      --text-primary:rgba(255,255,255,0.95);
+      --text-secondary:rgba(255,255,255,0.8);
+      --text-muted:rgba(255,255,255,0.55);
+      --fs-hero-logo: clamp(3.4rem, 7.2vw, 3.8rem);
+      --fs-heading:   clamp(2.1rem, 4vw, 2.4rem);
+      --fs-body:      clamp(1.2rem, 2vw, 1.35rem);
+      --fs-label:     clamp(0.9rem, 1.2vw, 1rem);
+      --fs-cta:       clamp(1.15rem, 2vw, 1.3rem);
+    }
+
+    #progress-bar { position:fixed;top:0;left:0;height:2px;background:var(--gold-gradient);transform-origin:left;transform:scaleX(0);z-index:1000;transition:transform 0.1s; }
+
+    .orbe { position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px);opacity:0.12; }
+    .orbe-1 { width:700px;height:700px;background:radial-gradient(circle,#6c3483,transparent);top:-200px;right:-200px; }
+    .orbe-2 { width:600px;height:600px;background:radial-gradient(circle,#1b3a6b,transparent);bottom:10%;left:-150px; }
+
+    .particle { position:fixed;border-radius:50%;background:var(--gold);pointer-events:none;z-index:0;animation:floatUp linear infinite; }
+    @keyframes floatUp { 0%{transform:translateY(100vh);opacity:0}10%{opacity:0.3}90%{opacity:0.1}100%{transform:translateY(-60px);opacity:0} }
+
+    .page { position:relative;z-index:1; }
+
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity:0;transform:translateY(40px);transition:opacity 0.9s ease,transform 0.9s ease; }
+    .reveal.visible { opacity:1;transform:translateY(0); }
+
+    .divider { width:1px;height:clamp(70px,10vw,110px);background:var(--gold-gradient);margin:0 auto;opacity:0.18; }
+
+    section { max-width:960px;margin:0 auto;padding:clamp(3.5rem,8vw,5.5rem) clamp(1.8rem,8vw,4rem); }
+    .section-tag { font-size:var(--fs-label);letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:2.1rem; }
+
+    /* HEADER APPLI */
+    .app-header {
+      max-width:960px;
+      margin:0 auto;
+      padding:1.4rem clamp(1.8rem,8vw,4rem) 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1.5rem;
+      font-size:var(--fs-label);
+      text-transform:uppercase;
+      letter-spacing:0.18em;
+      color:var(--text-muted);
+    }
+    .app-header__logo { display:flex;flex-direction:column;gap:0.15rem; }
+    .app-header__logo span {
+      font-size:0.7em;
+      letter-spacing:0.24em;
+      text-transform:uppercase;
+      color:var(--text-secondary);
+    }
+    .app-header__nav { display:flex;flex-wrap:wrap;gap:1.1rem; }
+    .app-header__nav a {
+      color:var(--text-muted);
+      text-decoration:none;
+      position:relative;
+    }
+    .app-header__nav a::after {
+      content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--gold-gradient);transition:width .25s;
+    }
+    .app-header__nav a:hover { color:var(--gold-light); }
+    .app-header__nav a:hover::after { width:100%; }
+
+    /* HERO APPLI */
+    .hero {
+      min-height:auto;
+      display:grid;
+      grid-template-columns:minmax(0,1.6fr) minmax(260px,1fr);
+      gap:2.4rem;
+      align-items:center;
+      padding:clamp(3.5rem,8vw,5rem) clamp(1.8rem,8vw,4rem);
+      max-width:960px;
+      margin:0 auto;
+    }
+    .hero-app__content { text-align:left; }
+    .hero-app__eyebrow {
+      font-size:var(--fs-label);
+      letter-spacing:0.32em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:1.4rem;
+    }
+    .hero-app__title {
+      font-size:var(--fs-heading);
+      font-weight:300;
+      line-height:1.3;
+      margin-bottom:1.3rem;
+      color:var(--text-primary);
+    }
+    .hero-app__title span { color:var(--gold-light); }
+    .hero-app__text {
+      font-size:var(--fs-body);
+      color:var(--text-secondary);
+      line-height:1.9;
+      max-width:40ch;
+      margin-bottom:1.8rem;
+    }
+    .hero-app__actions { display:flex;flex-wrap:wrap;gap:1rem;align-items:center; }
+    .hero-app__hint {
+      margin-top:1.2rem;
+      font-size:var(--fs-label);
+      color:var(--text-muted);
+    }
+
+    .btn-primary {
+      display:inline-block;background:var(--gold-gradient);color:#0d1117;
+      font-size:var(--fs-cta);font-weight:500;letter-spacing:0.28em;
+      text-transform:uppercase;text-decoration:none;
+      padding:1.05rem 2.6rem;border-radius:2px;
+      transition:transform 0.25s,box-shadow 0.25s;
+      box-shadow:0 6px 30px rgba(201,168,76,0.35);
+    }
+    .btn-primary:hover { transform:translateY(-2px);box-shadow:0 12px 52px rgba(201,168,76,0.6); }
+
+    .btn-secondary-app {
+      display:inline-block;
+      padding:1rem 2.3rem;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.22);
+      color:var(--text-secondary);
+      text-decoration:none;
+      font-size:var(--fs-label);
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+      background:rgba(8,12,20,0.7);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+    .btn-secondary-app:hover {
+      border-color:rgba(201,168,76,0.7);
+      color:var(--gold-light);
+    }
+
+    .hero-app__panel { display:flex;justify-content:flex-end; }
+    .hero-panela {
+      background:rgba(201,168,76,0.06);
+      border:1px solid rgba(201,168,76,0.3);
+      border-radius:18px;
+      padding:1.8rem 1.9rem;
+      max-width:340px;
+      backdrop-filter:blur(28px);
+      -webkit-backdrop-filter:blur(28px);
+    }
+    .hero-panel__tag {
+      font-size:var(--fs-label);
+      letter-spacing:0.28em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:0.4rem;
+    }
+    .hero-panel__label {
+      font-size:1.05rem;
+      color:var(--text-primary);
+      margin-bottom:0.8rem;
+    }
+    .hero-panel__desc {
+      font-size:var(--fs-body);
+      color:var(--text-secondary);
+      line-height:1.7;
+      margin-bottom:1.1rem;
+    }
+    .hero-panel__link {
+      font-size:var(--fs-label);
+      text-transform:uppercase;
+      letter-spacing:0.22em;
+      color:var(--gold-light);
+      text-decoration:none;
+    }
+
+    /* MÉTHODE */
+    .methode-section { text-align:center; }
+    .methode-title {
+      font-size:var(--fs-heading);
+      font-weight:300;color:var(--text-primary);
+      line-height:1.35;margin-bottom:1.2rem;max-width:34ch;margin-inline:auto;
+    }
+    .methode-title span { color:var(--gold-light); }
+    .methode-sub {
+      font-size:var(--fs-body);
+      color:var(--text-secondary);font-weight:300;
+      max-width:44ch;margin:0 auto 3.4rem;line-height:1.9;
+    }
+    .steps-list { display:flex;flex-direction:column;max-width:720px;margin:0 auto;gap:0.3rem; }
+    .step-item {
+      display:flex;align-items:center;gap:clamp(18px,3vw,28px);
+      padding:1rem 1.4rem;border-left:2px solid currentColor;
+      background:rgba(255,255,255,0.02);text-align:left;
+      transition:background 0.25s;
+      font-size:var(--fs-body);
+    }
+    .step-item:hover { background:rgba(255,255,255,0.06); }
+    .step-letter {
+      font-size:clamp(2.1rem,3.5vw,2.6rem);
+      font-weight:700;line-height:1;min-width:clamp(30px,4.4vw,46px);
+    }
+    .step-title {
+      font-size:var(--fs-label);
+      letter-spacing:0.25em;text-transform:uppercase;margin-bottom:6px;
+    }
+    .step-desc { font-size:var(--fs-body);color:var(--text-muted);line-height:1.6; }
+
+    /* CARTES PROCHAINS PAS */
+    .results-section { text-align:center; }
+    .home-actions-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.2rem;
+      max-width:900px;
+      margin:0 auto;
+    }
+    .home-card {
+      display:flex;
+      gap:1rem;
+      padding:1.4rem 1.6rem;
+      border-radius:16px;
+      text-decoration:none;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      transition:transform .25s, box-shadow .25s, border-color .25s, background .25s;
+    }
+    .home-card:hover {
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.06);
+      border-color:rgba(201,168,76,0.3);
+      box-shadow:0 18px 50px rgba(0,0,0,0.5);
+    }
+    .home-card__icon { font-size:1.6rem;flex-shrink:0;padding-top:0.2rem; }
+    .home-card__content h3 {
+      font-size:1.1rem;
+      margin-bottom:0.3rem;
+      color:var(--text-primary);
+    }
+    .home-card__content p {
+      font-size:var(--fs-body);
+      color:var(--text-secondary);
+      line-height:1.7;
+      margin-bottom:0.4rem;
+    }
+    .home-card__link {
+      font-size:var(--fs-label);
+      text-transform:uppercase;
+      letter-spacing:0.2em;
+      color:var(--gold-light);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align:center;padding:2.6rem 1.4rem;font-size:var(--fs-label);
+      letter-spacing:0.13em;color:var(--text-muted);
+      border-top:1px solid rgba(255,255,255,0.06);line-height:2.2;text-transform:uppercase;
+    }
+    footer em { text-transform:none;letter-spacing:0; }
+
+    @media (max-width:800px) {
+      .app-header { flex-direction:column;align-items:flex-start; }
+      .app-header__nav { width:100%;justify-content:flex-start;flex-wrap:wrap; }
+      .hero { grid-template-columns:1fr;padding-top:2.8rem; }
+      .hero-app__actions { flex-direction:column;align-items:flex-start; }
+      .hero-app__panel { justify-content:flex-start;margin-top:1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div class="orbe orbe-1"></div>
+<div class="orbe orbe-2"></div>
+<div id="particles"></div>
+
+<div class="page">
+
+  <header class="app-header">
+    <div class="app-header__logo">
+      🧭 V.A.L.E.U.R©
+      <span>De la peur à la joie d’être soi</span>
+    </div>
+    <nav class="app-header__nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="questionnaire.html">Questionnaire</a>
+      <a href="masques.html">Les 7 masques</a>
+      <a href="journal.html">Journal</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-app__content">
+      <p class="hero-app__eyebrow">Mon espace V.A.L.E.U.R©</p>
+      <h1 class="hero-app__title">
+        Votre lieu sûr pour<br>
+        <span>cartographier vos peurs</span><br>
+        et libérer votre Nature Authentique.
+      </h1>
+      <p class="hero-app__text">
+        Ici, vous ne « gérez » pas votre anxiété&nbsp;: vous comprenez vos masques,
+        traversez vos peurs et avancez, étape par étape, vers la joie d’être vous‑même.
+      </p>
+      <div class="hero-app__actions">
+        <a href="questionnaire.html" class="btn-primary">Commencer par le questionnaire</a>
+        <a href="dashboard.html" class="btn-secondary-app">Accéder à mon dashboard</a>
+      </div>
+      <p class="hero-app__hint">
+        1. Révélez vos masques dominants · 2. Suivez le chemin V.A.L.E.U.R© · 3. Observez votre transformation.
+      </p>
+    </div>
+
+    <div class="hero-app__panel">
+      <div class="hero-panela">
+        <p class="hero-panel__tag">Carte intérieure</p>
+        <p class="hero-panel__label">Nature Authentique vs Personnage</p>
+        <p class="hero-panel__desc">
+          Visualisez vos 7 masques, la peur qu’ils protègent
+          et la valeur authentique qu’ils retiennent.
+        </p>
+        <a href="dashboard.html" class="hero-panel__link">Ouvrir ma carte →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="methode-section reveal">
+    <p class="section-tag">La méthode V.A.L.E.U.R©</p>
+    <h2 class="methode-title">
+      Un protocole en <span>6 mouvements</span><br>
+      pour traverser vos peurs, pas les contourner.
+    </h2>
+    <p class="methode-sub">
+      Chaque fois qu’un masque se déclenche, vous suivez un même
+      chemin simple&nbsp;: de la prise de conscience jusqu’à
+      l’ancrage d’un nouveau choix aligné avec vos valeurs.
+    </p>
+
+    <div class="steps-list">
+      <div class="step-item" style="color:#c0392b;border-color:#c0392b">
+        <div class="step-letter" style="color:#c0392b">V</div>
+        <div>
+          <div class="step-title">Voir</div>
+          <div class="step-desc">Nommer le déclencheur, reconnaître le masque et la peur qui viennent de prendre le contrôle.</div>
+        </div>
+      </div>
+      <div class="step-item" style="color:#c4622d;border-color:#c4622d">
+        <div class="step-letter" style="color:#c4622d">A</div>
+        <div>
+          <div class="step-title">Accueillir</div>
+          <div class="step-desc">Laisser exister l’émotion sous le masque, sans la fuir ni la rationaliser.</div>
+        </div>
+      </div>
+      <div class="step-item" style="color:#c9a84c;border-color:#c9a84c">
+        <div class="step-letter" style="color:#c9a84c">L</div>
+        <div>
+          <div class="step-title">Localiser</div>
+          <div class="step-desc">Sentir où le corps parle&nbsp;: gorge, poitrine, ventre… et y revenir par la respiration.</div>
+        </div>
+      </div>
+      <div class="step-item" style="color:#2d6a4f;border-color:#2d6a4f">
+        <div class="step-letter" style="color:#2d6a4f">E</div>
+        <div>
+          <div class="step-title">Explorer</div>
+          <div class="step-desc">Mettre en lumière le conflit entre le masque et la valeur authentique qu’il enferme.</div>
+        </div>
+      </div>
+      <div class="step-item" style="color:#1b6fa2;border-color:#1b6fa2">
+        <div class="step-letter" style="color:#1b6fa2">U</div>
+        <div>
+          <div class="step-title">Unifier</div>
+          <div class="step-desc">Honorer le besoin de protection, tout en choisissant consciemment la valeur profonde.</div>
+        </div>
+      </div>
+      <div class="step-item" style="color:#7d3c98;border-color:#7d3c98">
+        <div class="step-letter" style="color:#7d3c98">R</div>
+        <div>
+          <div class="step-title">Renforcer</div>
+          <div class="step-desc">Poser une action concrète qui ancre ce nouveau geste de liberté intérieure.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="results-section reveal">
+    <p class="section-tag">Mes prochains pas</p>
+    <div class="home-actions-grid">
+      <a href="questionnaire.html" class="home-card">
+        <div class="home-card__icon">🔍</div>
+        <div class="home-card__content">
+          <h3>1. Faire le questionnaire</h3>
+          <p>Identifier vos masques dominants et générer votre première carte intérieure personnalisée.</p>
+          <span class="home-card__link">Commencer maintenant →</span>
+        </div>
+      </a>
+
+      <a href="masques.html" class="home-card">
+        <div class="home-card__icon">🎭</div>
+        <div class="home-card__content">
+          <h3>2. Comprendre mes 7 masques</h3>
+          <p>Explorer pour chaque couleur la peur fondamentale et la valeur authentique qu’elle emprisonne.</p>
+          <span class="home-card__link">Voir les 7 masques →</span>
+        </div>
+      </a>
+
+      <a href="dashboard.html" class="home-card">
+        <div class="home-card__icon">📊</div>
+        <div class="home-card__content">
+          <h3>3. Suivre mon évolution</h3>
+          <p>Retrouver votre carte des masques, vos derniers journaux V.A.L.E.U.R© et votre phase active du parcours.</p>
+          <span class="home-card__link">Ouvrir le dashboard →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    © Céline Bourbon · Méthode V.A.L.E.U.R© · Tous droits réservés<br>
+    <em>« De la peur à la joie d’être soi »</em>
+  </footer>
+
+</div>
+
+<script>
+  const pc = document.getElementById('particles');
+  for (let i=0;i<20;i++) {
+    const p=document.createElement('div');p.className='particle';
+    p.style.cssText=`left:${Math.random()*100}%;width:${Math.random()*2+1}px;height:${Math.random()*2+1}px;animation-duration:${Math.random()*20+15}s;animation-delay:${Math.random()*18}s;`;
+    pc.appendChild(p);
+  }
+  window.addEventListener('scroll',()=>{
+    const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);
+    document.getElementById('progress-bar').style.transform=`scaleX(${pct})`;
+  });
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{ if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);} });
+  },{threshold:0.1});
+  reveals.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
