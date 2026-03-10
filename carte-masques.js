@@ -1,127 +1,130 @@
-/* © Céline Bourbon — Méthode V.A.L.E.U.R© */
-;(function() {
-'use strict';
+/* © Céline Bourbon — Méthode V.A.L.E.U.R© — Tous droits réservés */
+/* Basé sur "De la peur à la joie d'être soi" — Éditions L'Harmattan */
+/* Reproduction interdite */
+;(function () {
+  'use strict';
 
-const MASQUES_RINGS = [
-  { id: 'violet', r: 256, couleur: '#D946EF', strokeW: 18 },
-  { id: 'indigo', r: 224, couleur: '#8B5CF6', strokeW: 18 },
-  { id: 'bleu',   r: 192, couleur: '#3B82F6', strokeW: 18 },
-  { id: 'vert',   r: 160, couleur: '#22C55E', strokeW: 18 },
-  { id: 'jaune',  r: 128, couleur: '#EAB308', strokeW: 18 },
-  { id: 'orange', r: 96,  couleur: '#F97316', strokeW: 18 },
-  { id: 'rouge',  r: 64,  couleur: '#EF4444', strokeW: 18 }
-];
+  var DATA = {
+    rouge: {
+      emoji: '🔴',
+      nom: 'Masque Rouge',
+      couleur: '#EF4444',
+      tagline: 'Vous espionnez votre propre corps.',
+      peur: 'Peur de la mort / de la maladie',
+      manif: 'Surveiller chaque signal corporel, consulter internet avant le médecin, éviter ce qui rappelle la mort',
+      aspiration: 'Confiance dans la sagesse de votre corps — présence complète, ici, maintenant, vivant·e',
+      mirror: 'Et si votre corps n\'était pas votre ennemi — mais le seul endroit où votre peur a trouvé à s\'exprimer ?'
+    },
+    orange: {
+      emoji: '🟠',
+      nom: 'Masque Orange',
+      couleur: '#F97316',
+      tagline: 'Vous êtes fort·e pour les autres — mais vous fuyez vos propres émotions.',
+      peur: 'Peur de la douleur / de la souffrance',
+      manif: 'Changer de sujet, rendre service, fuir — tout plutôt que de ressentir jusqu\'au bout',
+      aspiration: 'Ouverture émotionnelle authentique — la force de la vraie vulnérabilité, un accès à votre vitalité intérieure',
+      mirror: 'Et si la force que vous montrez au monde était la cage que vous avez construite pour ne plus jamais souffrir ?'
+    },
+    jaune: {
+      emoji: '🟡',
+      nom: 'Masque Jaune',
+      couleur: '#EAB308',
+      tagline: 'L\'imprévu vous angoisse. Vous devez tout maîtriser.',
+      peur: 'Peur de l\'inconnu / de l\'incertitude',
+      manif: 'Sur-planifier, tout anticiper, poser des questions excessives, ne pas supporter les imprévus',
+      aspiration: 'La confiance dans la vie — exister sans tout contrôler, la paix dans l\'incertitude',
+      mirror: 'Et si le contrôle que vous exercez sur tout ne vous protégeait pas du danger — mais vous privait de la vie ?'
+    },
+    vert: {
+      emoji: '🟢',
+      nom: 'Masque Vert',
+      couleur: '#22C55E',
+      tagline: 'Vous vous adaptez à tout le monde sauf à vous-même.',
+      peur: 'Peur du rejet / de l\'abandon',
+      manif: 'Dire oui, s\'effacer, chercher à plaire et à réparer — disparaître pour rester aimé·e',
+      aspiration: 'Des relations fondées sur la vérité — être aimé·e tel·le que vous êtes vraiment',
+      mirror: 'Et si la peur d\'être quitté·e vous faisait disparaître avant même que l\'autre parte ?'
+    },
+    bleu: {
+      emoji: '🔵',
+      nom: 'Masque Bleu',
+      couleur: '#3B82F6',
+      tagline: 'Vous ne pouvez pas vous permettre de montrer votre faiblesse.',
+      peur: 'Peur de l\'impuissance / de perdre le contrôle',
+      manif: 'Diriger, tout porter seul·e, déléguer est impossible — l\'armure vous isole de l\'aide',
+      aspiration: 'L\'interdépendance — donner ET recevoir, une force qui vient de l\'intérieur, pas de la maîtrise',
+      mirror: 'Et si votre force était devenue la prison qui vous empêche de vraiment recevoir l\'amour que vous méritez ?'
+    },
+    indigo: {
+      emoji: '🟣',
+      nom: 'Masque Indigo',
+      couleur: '#8B5CF6',
+      tagline: 'Parfait — ou rien.',
+      peur: 'Peur de l\'échec / de l\'inadéquation',
+      manif: 'Remettre à plus tard, ne pas commencer, se juger sévèrement — la barre si haute qu\'elle paralyse',
+      aspiration: 'Créer librement, sans se condamner — votre valeur ne dépend pas de vos performances',
+      mirror: 'Qu\'avez-vous abandonné ou jamais commencé, par peur de ne pas être assez bon·ne ?'
+    },
+    violet: {
+      emoji: '💜',
+      nom: 'Masque Violet',
+      couleur: '#D946EF',
+      tagline: 'Qui êtes-vous sans vos rôles ?',
+      peur: 'Peur de perdre son identité',
+      manif: 'S\'accrocher aux rôles connus même devenus trop étroits — le changement terrorise',
+      aspiration: 'Découvrir qui vous êtes vraiment sous les rôles — une identité plus profonde que tout',
+      mirror: 'Vous avez déjà traversé des changements — et vous êtes encore vous. Votre identité est plus profonde que vos rôles.'
+    }
+  };
 
-function generateCarteMasques() {
-  const svg = document.getElementById('carte-masques');
-  if (!svg) return;
-
-  const cx = 300, cy = 300;
-  const stats = ValeurCore.getMasqueStats();
-  const maxCount = Math.max(...Object.values(stats), 1);
-
-  const defs = `
-    <defs>
-      <radialGradient id="grad-nature" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
-        <stop offset="60%" stop-color="#F5E6B8" stop-opacity="0.9"/>
-        <stop offset="100%" stop-color="#C9A84C" stop-opacity="0.6"/>
-      </radialGradient>
-      <filter id="glow-nature">
-        <feGaussianBlur stdDeviation="8" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      ${MASQUES_RINGS.map(m => `
-        <filter id="glow-${m.id}">
-          <feGaussianBlur stdDeviation="4" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      `).join('')}
-    </defs>`;
-
-  const rings = MASQUES_RINGS.map((m, i) => {
-    const count = stats[m.id] || 0;
-    const score = count / maxCount;
-    const circumference = 2 * Math.PI * m.r;
-    // score = 0 → full dashoffset (ring hidden), score = 1 → offset 0 (ring visible)
-    const progressFilled = circumference * score;
-    const progressEmpty = circumference - progressFilled;
-    const baseOpacity = 0.15 + (1 - score) * 0.7;
-    const duration = 28 + i * 3;
-    const fillOpacity = 0.04 + score * 0.06;
-
-    return `
-      <!-- Background circle dim -->
-      <circle cx="${cx}" cy="${cy}" r="${m.r}"
-        stroke="${m.couleur}" stroke-width="${m.strokeW}"
-        fill="none" opacity="0.06" stroke-dasharray="4 8"/>
-
-      <!-- Background fill -->
-      <circle cx="${cx}" cy="${cy}" r="${m.r}"
-        stroke="none" fill="${m.couleur}" fill-opacity="${fillOpacity}"/>
-
-      <!-- Progress ring (spinning) -->
-      <circle class="mask-ring mask-${m.id}" cx="${cx}" cy="${cy}" r="${m.r}"
-        stroke="${m.couleur}" stroke-width="${m.strokeW + 4}"
-        fill="none"
-        stroke-dasharray="${progressFilled} ${circumference}"
-        stroke-dashoffset="0"
-        stroke-linecap="round"
-        opacity="${baseOpacity}"
-        filter="url(#glow-${m.id})"
-        data-masque="${m.id}" data-count="${count}" data-score="${Math.round(score * 100)}">
-        <animateTransform attributeName="transform" type="rotate"
-          values="0 ${cx} ${cy};360 ${cx} ${cy}"
-          dur="${duration}s" repeatCount="indefinite"/>
-      </circle>
-    `;
-  }).join('');
-
-  // Centre SOI pulsing
-  const centre = `
-    <circle cx="${cx}" cy="${cy}" r="46" fill="url(#grad-nature)" filter="url(#glow-nature)" opacity="0.95">
-      <animate attributeName="r" values="44;52;44" dur="4s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.85;1;0.85" dur="4s" repeatCount="indefinite"/>
-    </circle>
-    <text x="${cx}" y="${cy - 4}" text-anchor="middle" dominant-baseline="middle"
-      fill="#07091A" font-family="Cormorant Garamond, Georgia, serif"
-      font-size="15" font-weight="700" letter-spacing="3">SOI</text>
-    <text x="${cx}" y="${cy + 14}" text-anchor="middle" dominant-baseline="middle"
-      fill="#07091A" font-family="Cormorant Garamond, Georgia, serif"
-      font-size="9" font-weight="400" letter-spacing="1.5" opacity="0.8">nature authentique</text>
-  `;
-
-  svg.innerHTML = defs + rings + centre;
-
-  // Légende
-  const legendEl = document.getElementById('masques-legend');
-  if (legendEl) {
-    legendEl.innerHTML = MASQUES_RINGS.slice().reverse().map(m => {
-      const cfg = ValeurCore.config.masques[m.id];
-      const count = stats[m.id] || 0;
-      const pct = maxCount > 0 ? Math.round((count / maxCount) * 100) : 0;
-      return `
-        <div class="legend-item">
-          <span class="legend-emoji">${cfg.emoji}</span>
-          <div class="legend-text">
-            <strong>${cfg.peur}</strong>
-            <small>${count} entrée${count !== 1 ? 's' : ''} — ${pct}% travaillé</small>
-          </div>
-        </div>`;
-    }).join('');
+  function setText(id, val) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = val;
   }
 
-  // Tooltips
-  svg.querySelectorAll('.mask-ring').forEach(ring => {
-    ring.style.cursor = 'pointer';
-    ring.addEventListener('mouseenter', () => {
-      ring.style.filter = 'brightness(1.5)';
-    });
-    ring.addEventListener('mouseleave', () => {
-      ring.style.filter = '';
-    });
-  });
-}
+  function generateCarteMasques() {
+    if (typeof ValeurCore === 'undefined') return;
 
-window.generateCarteMasques = generateCarteMasques;
+    var id = ValeurCore.getActiveMasque();
+    if (!id || !DATA[id]) return;
+
+    var d = DATA[id];
+
+    /* Couleur dynamique sur la section */
+    var section = document.querySelector('.carte-section');
+    if (section) section.style.setProperty('--cm-color', d.couleur);
+
+    /* Remplissage des champs */
+    setText('cm-emoji',      d.emoji);
+    setText('cm-nom',        d.nom);
+    setText('cm-tagline',    d.tagline);
+    setText('cm-peur',       d.peur);
+    setText('cm-manif',      d.manif);
+    setText('cm-aspiration', d.aspiration);
+    setText('cm-mirror',     d.mirror);
+
+    /* Couleur du nom */
+    var nom = document.getElementById('cm-nom');
+    if (nom) {
+      nom.style.color = d.couleur;
+      nom.style.textShadow = '0 0 40px ' + d.couleur;
+    }
+
+    /* Bordures et labels colorés */
+    document.querySelectorAll('.cm-row').forEach(function (el) {
+      el.style.borderLeftColor = d.couleur;
+    });
+    document.querySelectorAll('.cm-row-label').forEach(function (el) {
+      el.style.color = d.couleur;
+    });
+
+    /* Affichage */
+    var sans = document.getElementById('carte-sans-data');
+    var avec = document.getElementById('carte-avec-data');
+    if (sans) sans.style.display = 'none';
+    if (avec) avec.style.display = 'block';
+  }
+
+  window.generateCarteMasques = generateCarteMasques;
+
 })();

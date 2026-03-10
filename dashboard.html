@@ -29,7 +29,84 @@
     .questionnaire-banner strong { color: var(--gold); }
 
     .carte-section { text-align: center; }
-    .carte-section h2 { margin-bottom: 0.5rem; }
+
+    @keyframes cm-glow {
+      0%,100% { filter: drop-shadow(0 0 14px var(--cm-color, #C9A84C)); }
+      50%      { filter: drop-shadow(0 0 32px var(--cm-color, #C9A84C)); }
+    }
+    #cm-emoji {
+      font-size: clamp(3.2rem, 14vw, 5.5rem);
+      line-height: 1;
+      display: block;
+      animation: cm-glow 3.5s ease-in-out infinite;
+    }
+    #cm-nom {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(1.8rem, 7vw, 2.8rem);
+      line-height: 1.1;
+      margin: 0.25rem 0 0;
+      color: var(--cm-color, var(--gold));
+      text-shadow: 0 0 40px var(--cm-color, var(--gold));
+    }
+    #cm-tagline {
+      margin: 0.5rem auto 0;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+      color: var(--text-secondary);
+      line-height: 1.4;
+      max-width: 360px;
+    }
+    .cm-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .cm-row {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 0.2rem;
+      border-left: 2px solid var(--cm-color, var(--gold));
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .cm-row-label {
+      font-size: 0.55rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--cm-color, var(--gold));
+      font-weight: 500;
+    }
+    .cm-row-value {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    #cm-mirror {
+      margin: 1.4rem auto 0;
+      max-width: 360px;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(0.9rem, 2.6vw, 1.05rem);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .cm-copyright {
+      margin-top: 1.2rem;
+      font-size: 0.48rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.35;
+    }
 
     .module-grid {
       display: grid;
@@ -104,13 +181,6 @@
       color: var(--gold);
       transform: translateX(3px);
     }
-
-    /* Carte masque dominant */
-    .carte-section { text-align: center; }
-    @keyframes cm-glow {
-      0%,100% { filter: drop-shadow(0 0 14px var(--cm-color, #22C55E)); }
-      50%      { filter: drop-shadow(0 0 32px var(--cm-color, #22C55E)); }
-    }
   </style>
 </head>
 <body>
@@ -176,56 +246,43 @@
   <section class="glass-card carte-section section animate-up delay-2">
     <h4>Ma Carte Intérieure</h4>
 
-    <!-- CAS 1 : questionnaire non fait -->
+    <!-- État vide : questionnaire non fait -->
     <div id="carte-sans-data">
-      <h3 style="font-family:var(--font-display);font-weight:300;margin:0.5rem 0 0.8rem;">
-        Votre masque dominant vous attend
-      </h3>
+      <h3 style="font-family:var(--font-display);font-weight:300;margin:0.5rem 0 0.8rem;">Votre masque dominant vous attend</h3>
       <p style="color:var(--text-secondary);font-size:0.9rem;max-width:340px;margin:0 auto 1.5rem;line-height:1.7;">
         Faites le questionnaire pour révéler la peur qui pilote vos comportements — souvent à votre insu.
       </p>
-      <a href="questionnaire.html" class="btn-primary" style="font-size:0.85rem;padding:0.7rem 1.6rem;">
-        Découvrir mon masque →
-      </a>
+      <a href="questionnaire.html" class="btn-primary" style="font-size:0.85rem;padding:0.7rem 1.6rem;">Découvrir mon masque →</a>
     </div>
 
-    <!-- CAS 2 : masque révélé (affiché par JS) -->
+    <!-- État rempli : masque révélé -->
     <div id="carte-avec-data" style="display:none;">
-
       <div style="margin:0.8rem 0 0.5rem;">
-        <span id="cm-emoji" style="font-size:clamp(3.2rem,14vw,5.5rem);line-height:1;display:block;animation:cm-glow 3.5s ease-in-out infinite;"></span>
+        <span id="cm-emoji"></span>
         <div style="margin-top:0.9rem;font-size:0.58rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:500;opacity:0.75;">Masque dominant</div>
-        <div id="cm-nom" style="font-family:var(--font-display);font-weight:300;font-size:clamp(1.8rem,7vw,2.8rem);line-height:1.1;margin:0.25rem 0 0;color:var(--cm-color);text-shadow:0 0 40px var(--cm-color);"></div>
-        <div id="cm-tagline" style="margin-top:0.5rem;font-family:var(--font-display);font-style:italic;font-weight:300;font-size:clamp(0.9rem,2.5vw,1.05rem);color:var(--text-secondary);line-height:1.4;max-width:360px;margin-left:auto;margin-right:auto;"></div>
+        <div id="cm-nom"></div>
+        <div id="cm-tagline"></div>
       </div>
 
       <hr class="gold-divider">
 
-      <div style="display:flex;flex-direction:column;gap:0.55rem;max-width:400px;margin:0 auto;text-align:left;">
-
-        <div class="legend-item" id="cm-row-1" style="flex-direction:column;align-items:flex-start;gap:0.2rem;border-left:2px solid var(--cm-color);border-radius:0 var(--radius-sm,12px) var(--radius-sm,12px) 0;">
-          <span class="cm-label" style="font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--cm-color);font-weight:500;">La peur qui se cache derrière</span>
-          <span id="cm-peur" style="font-size:0.9rem;color:var(--text-primary);font-weight:300;line-height:1.5;"></span>
+      <div class="cm-rows">
+        <div class="legend-item cm-row">
+          <span class="cm-row-label">La peur qui se cache derrière</span>
+          <span id="cm-peur" class="cm-row-value"></span>
         </div>
-
-        <div class="legend-item" id="cm-row-2" style="flex-direction:column;align-items:flex-start;gap:0.2rem;border-left:2px solid var(--cm-color);border-radius:0 var(--radius-sm,12px) var(--radius-sm,12px) 0;">
-          <span class="cm-label" style="font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--cm-color);font-weight:500;">Ce qu'elle vous fait faire</span>
-          <span id="cm-manif" style="font-size:0.9rem;color:var(--text-primary);font-weight:300;line-height:1.5;"></span>
+        <div class="legend-item cm-row">
+          <span class="cm-row-label">Ce qu'elle vous fait faire</span>
+          <span id="cm-manif" class="cm-row-value"></span>
         </div>
-
-        <div class="legend-item" id="cm-row-3" style="flex-direction:column;align-items:flex-start;gap:0.2rem;border-left:2px solid var(--cm-color);border-radius:0 var(--radius-sm,12px) var(--radius-sm,12px) 0;">
-          <span class="cm-label" style="font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--cm-color);font-weight:500;">Votre aspiration profonde</span>
-          <span id="cm-aspiration" style="font-size:0.9rem;color:var(--text-primary);font-weight:300;line-height:1.5;"></span>
+        <div class="legend-item cm-row">
+          <span class="cm-row-label">Votre aspiration profonde</span>
+          <span id="cm-aspiration" class="cm-row-value"></span>
         </div>
-
       </div>
 
-      <p id="cm-mirror" style="margin:1.4rem auto 0;max-width:360px;font-family:var(--font-display);font-style:italic;font-weight:300;font-size:clamp(0.9rem,2.6vw,1.05rem);line-height:1.7;color:var(--text-secondary);padding-top:1rem;border-top:1px solid rgba(255,255,255,0.05);"></p>
-
-      <p style="margin-top:1.2rem;font-size:0.48rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);opacity:0.35;">
-        © 2025 Méthode V.A.L.E.U.R© · Céline Bourbon · Reproduction interdite
-      </p>
-
+      <p id="cm-mirror"></p>
+      <p class="cm-copyright">© 2025 Méthode V.A.L.E.U.R© · Céline Bourbon · Reproduction interdite</p>
     </div>
   </section>
 
@@ -389,107 +446,9 @@
 </div>
 
 <script src="assets/js/valeur-core.js"></script>
+<script src="assets/js/carte-masques.js"></script>
 <script src="assets/js/journal-manager.js"></script>
 <script src="assets/js/dashboard.js"></script>
-
-<script>
-/* ── Carte Masque Dominant · © 2025 Méthode V.A.L.E.U.R© · Céline Bourbon ── */
-(function () {
-  var DATA = {
-    rouge: {
-      emoji:'🔴', nom:'Masque Rouge', couleur:'#EF4444',
-      tagline:'Vous espionnez votre propre corps.',
-      peur:'Peur de la mort / de la maladie',
-      manif:'Surveiller chaque signal corporel, consulter internet avant le médecin, éviter ce qui rappelle la mort',
-      aspiration:'Confiance dans la sagesse de votre corps — présence complète, ici, maintenant, vivant·e',
-      mirror:'Et si votre corps n\'était pas votre ennemi — mais le seul endroit où votre peur a trouvé à s\'exprimer ?'
-    },
-    orange: {
-      emoji:'🟠', nom:'Masque Orange', couleur:'#F97316',
-      tagline:'Vous êtes fort·e pour les autres — mais vous fuyez vos propres émotions.',
-      peur:'Peur de la douleur / de la souffrance',
-      manif:'Changer de sujet, rendre service, fuir — tout plutôt que de ressentir jusqu\'au bout',
-      aspiration:'Ouverture émotionnelle authentique — la force de la vraie vulnérabilité, un accès à votre vitalité intérieure',
-      mirror:'Et si la force que vous montrez au monde était la cage que vous avez construite pour ne plus jamais souffrir ?'
-    },
-    jaune: {
-      emoji:'🟡', nom:'Masque Jaune', couleur:'#EAB308',
-      tagline:'L\'imprévu vous angoisse. Vous devez tout maîtriser.',
-      peur:'Peur de l\'inconnu / de l\'incertitude',
-      manif:'Sur-planifier, tout anticiper, poser des questions excessives, ne pas supporter les imprévus',
-      aspiration:'La confiance dans la vie — exister sans tout contrôler, la paix dans l\'incertitude',
-      mirror:'Et si le contrôle que vous exercez sur tout ne vous protégeait pas du danger — mais vous privait de la vie ?'
-    },
-    vert: {
-      emoji:'🟢', nom:'Masque Vert', couleur:'#22C55E',
-      tagline:'Vous vous adaptez à tout le monde sauf à vous-même.',
-      peur:'Peur du rejet / de l\'abandon',
-      manif:'Dire oui, s\'effacer, chercher à plaire et à réparer — disparaître pour rester aimé·e',
-      aspiration:'Des relations fondées sur la vérité — être aimé·e tel·le que vous êtes vraiment',
-      mirror:'Et si la peur d\'être quitté·e vous faisait disparaître avant même que l\'autre parte ?'
-    },
-    bleu: {
-      emoji:'🔵', nom:'Masque Bleu', couleur:'#3B82F6',
-      tagline:'Vous ne pouvez pas vous permettre de montrer votre faiblesse.',
-      peur:'Peur de l\'impuissance / de perdre le contrôle',
-      manif:'Diriger, tout porter seul·e, déléguer est impossible — l\'armure vous isole de l\'aide',
-      aspiration:'L\'interdépendance — donner ET recevoir, une force qui vient de l\'intérieur, pas de la maîtrise',
-      mirror:'Et si votre force était devenue la prison qui vous empêche de vraiment recevoir l\'amour que vous méritez ?'
-    },
-    indigo: {
-      emoji:'🟣', nom:'Masque Indigo', couleur:'#8B5CF6',
-      tagline:'Parfait — ou rien.',
-      peur:'Peur de l\'échec / de l\'inadéquation',
-      manif:'Remettre à plus tard, ne pas commencer, se juger sévèrement — la barre si haute qu\'elle paralyse',
-      aspiration:'Créer librement, sans se condamner — votre valeur ne dépend pas de vos performances',
-      mirror:'Qu\'avez-vous abandonné ou jamais commencé, par peur de ne pas être assez bon·ne ?'
-    },
-    violet: {
-      emoji:'💜', nom:'Masque Violet', couleur:'#D946EF',
-      tagline:'Qui êtes-vous sans vos rôles ?',
-      peur:'Peur de perdre son identité',
-      manif:'S\'accrocher aux rôles connus même devenus trop étroits — le changement terrorise',
-      aspiration:'Découvrir qui vous êtes vraiment sous les rôles — une identité plus profonde que tout',
-      mirror:'Vous avez déjà traversé des changements — et vous êtes encore vous. Votre identité est plus profonde que vos rôles.'
-    }
-  };
-
-  function setText(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
-
-  function init() {
-    if (typeof ValeurCore === 'undefined') return;
-    var id = ValeurCore.getActiveMasque();
-    if (!id || !DATA[id]) return;
-    var d = DATA[id];
-
-    var section = document.querySelector('.carte-section');
-    if (section) section.style.setProperty('--cm-color', d.couleur);
-
-    setText('cm-emoji',     d.emoji);
-    setText('cm-nom',       d.nom);
-    setText('cm-tagline',   d.tagline);
-    setText('cm-peur',      d.peur);
-    setText('cm-manif',     d.manif);
-    setText('cm-aspiration',d.aspiration);
-    setText('cm-mirror',    d.mirror);
-
-    var nom = document.getElementById('cm-nom');
-    if (nom) { nom.style.color = d.couleur; nom.style.textShadow = '0 0 40px ' + d.couleur; }
-
-    document.querySelectorAll('#carte-avec-data .legend-item').forEach(function(el){
-      el.style.borderLeftColor = d.couleur;
-    });
-    document.querySelectorAll('.cm-label').forEach(function(el){
-      el.style.color = d.couleur;
-    });
-
-    document.getElementById('carte-sans-data').style.display = 'none';
-    document.getElementById('carte-avec-data').style.display  = 'block';
-  }
-
-  typeof ValeurCore !== 'undefined' ? init() : document.addEventListener('DOMContentLoaded', init);
-})();
-</script>
 
 <script>
   // Module card hover colors
