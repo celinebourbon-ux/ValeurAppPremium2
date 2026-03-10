@@ -1,0 +1,360 @@
+<!-- ═══════════════════════════════════════════════════════════════════
+     PATCH — Carte Intérieure Dashboard · Méthode V.A.L.E.U.R©
+     © 2025 Céline Bourbon, Psychologue · Tous droits réservés
+
+     MODE D'EMPLOI (3 étapes) :
+     1. Ouvrez dashboard.html sur GitHub → cliquez l'icône crayon ✏️
+     2. ÉTAPE A : ajoutez le CSS dans le <style> existant (en bas, avant </style>)
+     3. ÉTAPE B : remplacez la section <!-- Carte des masques -->
+     4. ÉTAPE C : ajoutez le JS juste avant </body>
+     5. Cliquez "Commit changes"
+═══════════════════════════════════════════════════════════════════ -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ÉTAPE A — CSS à coller dans le <style> existant, avant </style>
+═══════════════════════════════════════════════════════════════════ -->
+
+    /* ── CARTE INTÉRIEURE NOUVELLE VERSION ── */
+    .carte-section { text-align: center; padding-bottom: 2rem; }
+
+    .carte-eyebrow {
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .carte-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--text-primary); margin-bottom: 0.4rem;
+    }
+    .carte-titre em {
+      font-style: italic; font-weight: 600;
+      color: var(--gold);
+    }
+    .carte-intro {
+      font-size: 0.82rem; font-weight: 300;
+      line-height: 1.75; color: rgba(var(--text-rgb, 232,224,208), 0.72);
+      max-width: 360px; margin: 0 auto 0.5rem;
+    }
+    .carte-intro strong { color: var(--text-primary); font-weight: 500; }
+
+    .carte-ligne {
+      width: 1px; height: 40px; margin: 0.8rem auto;
+      background: linear-gradient(180deg, transparent, rgba(201,168,76,0.5), transparent);
+    }
+
+    /* SVG wrapper — grand et central */
+    .carte-soi-wrap {
+      width: min(380px, 92vw);
+      height: min(380px, 92vw);
+      margin: 0 auto;
+    }
+    #carte-soi-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+    .carte-soi-caption {
+      font-size: 0.58rem; letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin: 0.4rem 0 0;
+    }
+
+    .carte-pont {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.7; color: rgba(var(--text-rgb, 232,224,208), 0.7);
+      margin: 1.8rem auto 0; max-width: 400px;
+    }
+    .carte-pont strong { font-style: normal; font-weight: 600; color: var(--text-primary); }
+
+    /* Les 7 masques — liste */
+    .carte-masques-list {
+      margin: 1.5rem 0 0;
+      display: flex; flex-direction: column; gap: 0;
+      text-align: left;
+    }
+    .carte-m {
+      padding: 1.1rem 1rem 1.1rem 1.3rem;
+      border-left: 1.5px solid var(--cm-color);
+      position: relative; cursor: default;
+      transition: background 0.3s ease;
+    }
+    .carte-m + .carte-m {
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .carte-m:hover { background: var(--cm-dim); }
+
+    .carte-m-dot {
+      position: absolute; left: -4.5px; top: 1.25rem;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--cm-color);
+      box-shadow: 0 0 10px var(--cm-color);
+      transition: box-shadow 0.3s;
+    }
+    .carte-m:hover .carte-m-dot { box-shadow: 0 0 20px var(--cm-color), 0 0 6px var(--cm-color); }
+
+    .carte-m-phrase {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.95rem, 2.6vw, 1.08rem);
+      font-style: italic; font-weight: 400;
+      line-height: 1.4; color: var(--text-primary);
+    }
+    .carte-m-cle {
+      margin-top: 0.35rem;
+      font-size: 0.72rem; font-weight: 300;
+      line-height: 1.5; color: rgba(var(--text-rgb, 232,224,208), 0.82);
+    }
+    .carte-m-cle em { font-style: normal; color: var(--cm-color); }
+
+    .carte-conclusion {
+      margin-top: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.65; color: rgba(var(--text-rgb, 232,224,208), 0.72);
+    }
+    .carte-conclusion strong { font-style: normal; font-weight: 600; color: var(--text-primary); }
+
+    .carte-copyright {
+      margin-top: 1.2rem;
+      font-size: 0.55rem; letter-spacing: 1.5px;
+      color: rgba(var(--text-rgb, 232,224,208), 0.14);
+      text-transform: uppercase;
+    }
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ÉTAPE B — Remplacez TOUTE la section <!-- Carte des masques -->
+     (de <!-- Carte des masques --> jusqu'au </section> inclus)
+     par ce qui suit :
+═══════════════════════════════════════════════════════════════════ -->
+
+  <!-- Carte des masques -->
+  <section class="glass-card carte-section section animate-up delay-2">
+
+    <div class="carte-eyebrow">Méthode V.A.L.E.U.R©</div>
+
+    <h2 class="carte-titre">
+      Au centre — le vrai vous.<br>
+      <em>Autour — sept couches de défenses<br>posées une à une.</em>
+    </h2>
+
+    <p class="carte-intro">
+      Chaque anneau est une peur. Chaque peur a créé<br>
+      <strong>une stratégie de survie devenue prison.</strong><br>
+      Passez sur chaque phrase — reconnaissez-vous.
+    </p>
+
+    <div class="carte-ligne"></div>
+
+    <div class="carte-soi-wrap">
+      <svg id="carte-soi-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+    </div>
+    <div class="carte-soi-caption">votre lumière · entourée de ses protections</div>
+
+    <p class="carte-pont">
+      Chaque anneau tourne encore — tant que la peur est active.<br>
+      <strong>Moins il tourne vite, plus il est traversé.</strong>
+    </p>
+
+    <div class="carte-masques-list" id="carte-masques-list"></div>
+
+    <p class="carte-conclusion">
+      Vous vous êtes reconnu·e dans au moins une ?<br>
+      <strong>C'est normal. C'est humain.</strong>
+    </p>
+
+    <p class="carte-copyright">© 2025 Méthode V.A.L.E.U.R© · Céline Bourbon, Psychologue · Tous droits réservés · Reproduction interdite</p>
+
+  </section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ÉTAPE C — JS à coller juste avant </body> (tout à la fin du fichier)
+═══════════════════════════════════════════════════════════════════ -->
+
+<script>
+/* ══════════════════════════════════════════════════
+   Carte Intérieure · Méthode V.A.L.E.U.R©
+   © 2025 Céline Bourbon · Reproduction interdite
+   ══════════════════════════════════════════════════ */
+(function() {
+
+  var MASQUES = [
+    {
+      color: '#d94040', dim: 'rgba(217,64,64,0.09)',
+      phrase: '« Mon cœur bat trop vite. C\'est peut-être grave. »',
+      cle: 'La peur de la mort parle à travers les sensations du corps. <em>Chaque signal devient une alarme — même sans danger réel.</em>'
+    },
+    {
+      color: '#e07c2a', dim: 'rgba(224,124,42,0.09)',
+      phrase: '« Je préfère ne rien ressentir plutôt que d\'avoir mal. »',
+      cle: 'La souffrance psychique fait si peur qu\'on coupe le contact avec soi. <em>L\'anesthésie est devenue le seul refuge connu.</em>'
+    },
+    {
+      color: '#c9a84c', dim: 'rgba(201,168,76,0.09)',
+      phrase: '« Si j\'anticipe tout, rien de mauvais ne peut m\'arriver. »',
+      cle: 'L\'incertitude est vécue comme une menace en soi. <em>Alors on planifie, vérifie, recommence — pour ne jamais être pris·e au dépourvu.</em>'
+    },
+    {
+      color: '#2eac6e', dim: 'rgba(46,172,110,0.09)',
+      phrase: '« Je m\'efface pour être sûr·e que tu ne partiras pas. »',
+      cle: 'La peur du rejet fait disparaître ses propres besoins. <em>S\'oublier est devenu la condition pour être aimé·e.</em>'
+    },
+    {
+      color: '#2e86c1', dim: 'rgba(46,134,193,0.09)',
+      phrase: '« Je dois tenir les rênes — sinon je subis encore. »',
+      cle: 'L\'impuissance vécue se retourne en besoin de tout contrôler. <em>Diriger est la seule façon connue de se sentir en sécurité.</em>'
+    },
+    {
+      color: '#7d3c98', dim: 'rgba(125,60,152,0.09)',
+      phrase: '« Je ne commence pas pour ne pas me prouver que je ne vaux rien. »',
+      cle: 'La peur de l\'échec paralyse avant même l\'action. <em>Le perfectionnisme ou l\'immobilisme — les deux faces d\'une même blessure.</em>'
+    },
+    {
+      color: '#9b59b6', dim: 'rgba(155,89,182,0.09)',
+      phrase: '« Je ne sais plus qui je suis vraiment sous tous ces rôles. »',
+      cle: 'La peur la plus profonde — ne pas savoir qui on est vraiment. <em>Tous les masques portés, et derrière : votre lumière — intacte.</em>'
+    }
+  ];
+
+  /* ── Build list ── */
+  var list = document.getElementById('carte-masques-list');
+  if (list) {
+    MASQUES.forEach(function(m) {
+      var el = document.createElement('div');
+      el.className = 'carte-m';
+      el.style.cssText = '--cm-color:' + m.color + ';--cm-dim:' + m.dim + ';';
+      el.innerHTML =
+        '<div class="carte-m-dot"></div>' +
+        '<div class="carte-m-phrase">' + m.phrase + '</div>' +
+        '<div class="carte-m-cle">' + m.cle + '</div>';
+      list.appendChild(el);
+    });
+
+    /* scroll reveal */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          var items = Array.prototype.slice.call(list.children);
+          var idx = items.indexOf(e.target);
+          setTimeout(function() { e.target.style.opacity = '1'; e.target.style.transform = 'translateX(0)'; }, idx * 80);
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.1 });
+      Array.prototype.forEach.call(list.querySelectorAll('.carte-m'), function(el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(-10px)';
+        el.style.transition = 'opacity .45s ease, transform .45s ease';
+        io.observe(el);
+      });
+    }
+  }
+
+  /* ── SOI animation ── */
+  var svg = document.getElementById('carte-soi-svg');
+  if (!svg) return;
+
+  var S = 380, cx = 190, cy = 190;
+  svg.setAttribute('viewBox', '0 0 ' + S + ' ' + S);
+
+  var OR = cx - 12, CR = 55;
+  var gap = (OR - CR) / 8;
+  var DIRS = [1,-1,1,-1,1,-1,1];
+  var DURS = [18,24,30,22,28,20,26];
+  var STRT = [0,51,102,153,204,255,306];
+
+  var defs = '<defs>' +
+    '<radialGradient id="cg-soi" cx="50%" cy="40%" r="60%">' +
+      '<stop offset="0%" stop-color="#fffef5" stop-opacity="1"/>' +
+      '<stop offset="32%" stop-color="#ffd700" stop-opacity=".97"/>' +
+      '<stop offset="65%" stop-color="#c9a84c" stop-opacity=".58"/>' +
+      '<stop offset="100%" stop-color="#07080f" stop-opacity="0"/>' +
+    '</radialGradient>' +
+    '<radialGradient id="cg-halo" cx="50%" cy="50%" r="50%">' +
+      '<stop offset="0%" stop-color="#ffd700" stop-opacity=".2"/>' +
+      '<stop offset="100%" stop-color="#ffd700" stop-opacity="0"/>' +
+    '</radialGradient>' +
+    '<filter id="cf-gold" x="-100%" y="-100%" width="300%" height="300%">' +
+      '<feGaussianBlur stdDeviation="11" result="b"/>' +
+      '<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>' +
+    '</filter>' +
+    '<filter id="cf-ring" x="-50%" y="-50%" width="200%" height="200%">' +
+      '<feGaussianBlur stdDeviation="2.8" result="b"/>' +
+      '<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>' +
+    '</filter>';
+
+  MASQUES.forEach(function(m, i) {
+    var r = OR - i * gap;
+    defs += '<linearGradient id="cg-arc' + i + '" gradientUnits="userSpaceOnUse"' +
+      ' x1="' + (cx-r) + '" y1="' + cy + '" x2="' + (cx+r) + '" y2="' + cy + '">' +
+      '<stop offset="0%"   stop-color="' + m.color + '" stop-opacity=".03"/>' +
+      '<stop offset="24%"  stop-color="' + m.color + '" stop-opacity=".88"/>' +
+      '<stop offset="52%"  stop-color="#ffffff"    stop-opacity=".52"/>' +
+      '<stop offset="78%"  stop-color="' + m.color + '" stop-opacity=".82"/>' +
+      '<stop offset="100%" stop-color="' + m.color + '" stop-opacity=".03"/>' +
+    '</linearGradient>';
+  });
+  defs += '</defs>';
+
+  var bg = '<circle cx="' + cx + '" cy="' + cy + '" r="' + (cx-2) + '"' +
+    ' fill="#07080f" stroke="rgba(201,168,76,.055)" stroke-width="1"/>';
+
+  var halo = '<circle cx="' + cx + '" cy="' + cy + '" r="' + (CR+36) + '" fill="url(#cg-halo)">' +
+    '<animate attributeName="r" values="' + (CR+22) + ';' + (CR+52) + ';' + (CR+22) + '" dur="5.5s" repeatCount="indefinite"/>' +
+    '<animate attributeName="opacity" values=".35;.7;.35" dur="5.5s" repeatCount="indefinite"/>' +
+  '</circle>';
+
+  var rings = '';
+  MASQUES.forEach(function(m, i) {
+    var r   = OR - i * gap;
+    var sw  = gap * 0.43;
+    var c   = 2 * Math.PI * r;
+    var dl  = c * (0.52 + i * 0.024);
+    var gl  = c - dl;
+    var from = STRT[i];
+    var to   = DIRS[i] === 1 ? from + 360 : from - 360;
+    /* dim ring background */
+    var dimColor = m.color.replace('rgb(','rgba(').replace(')',',0.2)');
+    rings +=
+      '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none"' +
+        ' stroke="' + m.dim.replace('0.09','0.22') + '" stroke-width="' + (sw*2.1) + '"/>' +
+      '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none"' +
+        ' stroke="url(#cg-arc' + i + ')" stroke-width="' + sw + '"' +
+        ' stroke-linecap="round"' +
+        ' stroke-dasharray="' + dl + ' ' + gl + '"' +
+        ' filter="url(#cf-ring)" opacity=".93">' +
+        '<animateTransform attributeName="transform" type="rotate"' +
+          ' from="' + from + ' ' + cx + ' ' + cy + '"' +
+          ' to="' + to + ' ' + cx + ' ' + cy + '"' +
+          ' dur="' + DURS[i] + 's" repeatCount="indefinite"/>' +
+      '</circle>';
+  });
+
+  var centre =
+    '<circle cx="' + cx + '" cy="' + cy + '" r="' + (CR+18) + '" fill="url(#cg-halo)" opacity=".5">' +
+      '<animate attributeName="r" values="' + (CR+10) + ';' + (CR+28) + ';' + (CR+10) + '" dur="4.2s" repeatCount="indefinite"/>' +
+      '<animate attributeName="opacity" values=".28;.62;.28" dur="4.2s" repeatCount="indefinite"/>' +
+    '</circle>' +
+    '<circle cx="' + cx + '" cy="' + cy + '" r="' + CR + '" fill="url(#cg-soi)" filter="url(#cf-gold)">' +
+      '<animate attributeName="r" values="' + (CR-3) + ';' + (CR+6) + ';' + (CR-3) + '" dur="4s" repeatCount="indefinite"/>' +
+    '</circle>' +
+    '<circle cx="' + cx + '" cy="' + cy + '" r="' + CR + '" fill="none" stroke="#ffd700" stroke-width="1">' +
+      '<animate attributeName="stroke-opacity" values=".1;.65;.1" dur="3.2s" repeatCount="indefinite"/>' +
+    '</circle>' +
+    '<text x="' + cx + '" y="' + (cy-8) + '" text-anchor="middle" dominant-baseline="middle"' +
+      ' fill="#04050a" font-family="Cormorant Garamond,serif"' +
+      ' font-size="20" font-weight="700" letter-spacing="4">SOI</text>' +
+    '<text x="' + cx + '" y="' + (cy+12) + '" text-anchor="middle" dominant-baseline="middle"' +
+      ' fill="#04050a" font-family="Cormorant Garamond,serif"' +
+      ' font-size="10" font-weight="300" letter-spacing="2" opacity=".72">' +
+      'nature authentique' +
+    '</text>';
+
+  svg.innerHTML = defs + bg + halo + rings + centre;
+
+})();
+</script>
